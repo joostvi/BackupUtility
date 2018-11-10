@@ -5,11 +5,11 @@ namespace ZCopy.Classes.ExceptionHandling
 {
     public class ContinueOnExceptionHandler : IExceptionHandler
     {
-        private CommandHandler _commandHandler;
+        private readonly IEventLogger _eventLogger;
 
-        public ContinueOnExceptionHandler(CommandHandler commandHandler)
+        public ContinueOnExceptionHandler(IEventLogger commandHandler)
         {
-            _commandHandler = commandHandler;
+            _eventLogger = commandHandler;
         }
 
         public void HandleException(string message, Exception ex)
@@ -17,7 +17,7 @@ namespace ZCopy.Classes.ExceptionHandling
             string eventText = message;
             if ((eventText == "" || eventText == null))
                 eventText = ex.Message;
-            _commandHandler.RaiseThisEvent(eventText);
+            _eventLogger.LogEvent(eventText);
         }
     }
 }

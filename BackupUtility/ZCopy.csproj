@@ -82,6 +82,7 @@
     <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.cs" />
     <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.cs" />
     <Compile Include="Classes\NeedToCopy\NeedToCopyWithConfirmation.cs" />
+    <Compile Include="Interfaces\IEventLogger.cs" />
     <Compile Include="Interfaces\IConfirmationChecker.cs" />
     <Compile Include="Classes\NeedToCopy\NeedToCopyUpdatedOnlyChecker.cs" />
     <Compile Include="Classes\Readablity\BasicReadChecker.cs" />

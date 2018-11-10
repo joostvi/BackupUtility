@@ -7,7 +7,7 @@ using ZCopy.Interfaces;
 
 namespace ZCopy.Classes 
 {
-    public class CommandHandler : IFileReadableChecker, IFileIgnoreChecker, INeedToCopyChecker, IConfirmationChecker
+    public class CommandHandler : IFileReadableChecker, IFileIgnoreChecker, INeedToCopyChecker, IConfirmationChecker, IEventLogger
     {
 
         // Private ReadOnly _commands As Commands
@@ -21,19 +21,14 @@ namespace ZCopy.Classes
 
         public delegate void ProcessInfoEventEventHandler(string theInfo);
 
-        public void RaiseThisEvent(string theInfo)
-        {
-            ProcessInfoEvent?.Invoke(theInfo);
-        }
-
         public delegate bool ConfirmationRequest(string theInfo);
 
-        private readonly ConfirmationRequest _ConfirmationRequest;
+        public event ConfirmationRequest ConfirmationRequestHandler;
 
         public bool GetConfirmation(string aTarget)
         {
-            if (_ConfirmationRequest != null)
-                return _ConfirmationRequest.Invoke(aTarget);
+            if (ConfirmationRequestHandler != null)
+                return ConfirmationRequestHandler.Invoke(aTarget);
             return true;
         }
 
@@ -79,6 +74,11 @@ namespace ZCopy.Classes
         public bool NeedToCopy(string aSource, string aTarget)
         {
             return _needToCopyChecker.NeedToCopy(aSource, aTarget);
+        }
+
+        public void LogEvent(string message)
+        {
+            ProcessInfoEvent?.Invoke(message);
         }
     }
 }

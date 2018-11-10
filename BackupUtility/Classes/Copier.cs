@@ -8,13 +8,9 @@ namespace ZCopy.Classes
     public class Copier
     {
         private Commands _commands;
-        private ConfirmationRequest _ConfirmationRequest;
-        private IFileSystem _fileSystem;
-        private IFileComparer _fileComparer;
+        private readonly IFileSystem _fileSystem;
+        private readonly IFileComparer _fileComparer;
         private CommandHandler _copierComponents;
-
-        // TODO: maybe we should use a class as parameter
-        public delegate bool ConfirmationRequest(string theInfo);
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
@@ -39,17 +35,8 @@ namespace ZCopy.Classes
                 return;
 
             string aTarget = aFile.Replace(_commands.Source, _commands.Target);
-            bool doCopy = false;
 
-            if (_commands.UpdatedOnly)
-            {
-                if (!_fileSystem.File.Exists(aTarget))
-                    doCopy = true;
-                else if (ConfirmTheRequest(aTarget))
-                    doCopy = !_fileComparer.IsSameFile(new FileInfo(aFile), new FileInfo(aTarget));
-            }
-            else if (ConfirmTheRequest(aTarget))
-                doCopy = true;
+            bool doCopy = _copierComponents.NeedToCopy(_commands.Source, aTarget);
 
             if (doCopy)
             {
@@ -66,24 +53,17 @@ namespace ZCopy.Classes
                         if (_commands.SkipCopyErrors)
                             ProcessInfoEvent?.Invoke("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")");
                         else
-                            throw ex;
+                            throw;
                     }
                     catch (IOException ex)
                     {
                         if (_commands.SkipCopyErrors)
                             ProcessInfoEvent?.Invoke("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")");
                         else
-                            throw ex;
+                            throw;
                     }
                 }
             }
-        }
-
-        private bool ConfirmTheRequest(string aTarget)
-        {
-            if (_commands.RequestConfirm && _ConfirmationRequest != null)
-                return _ConfirmationRequest(aTarget);
-            return true;
         }
 
         private bool FolderExists(string aFolder)
@@ -191,9 +171,8 @@ namespace ZCopy.Classes
             ProcessSubfolders(aFolder);
         }
 
-        public void Copy(ConfirmationRequest aConfirmationRequest)
+        public void Copy()
         {
-            _ConfirmationRequest = aConfirmationRequest;
             ThisDirectory(_commands.Source);
         }
     }

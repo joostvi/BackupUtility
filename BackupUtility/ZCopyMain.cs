@@ -20,7 +20,8 @@ namespace ZCopy
                     Copier Copier = new Copier(theCommands, CommandHandler);
                     Copier.ProcessInfoEvent += ProcessInfo_ProcessInfoEvent;
                     CommandHandler.ProcessInfoEvent += ProcessInfo_ProcessInfoEvent;
-                    Copier.Copy(ConfirmationRequest);
+                    CommandHandler.ConfirmationRequestHandler += ConfirmationRequest;
+                    Copier.Copy();
                     if (theCommands.PauseWhenDone)
                         Console.WriteLine("Copy done.");
                 }
