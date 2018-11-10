@@ -1,7 +1,8 @@
 ﻿using Moq;
 using ZCopy;
+using ZCopy.Interfaces;
 
- namespace ZCopyUnitTester.Mocks
+namespace ZCopyUnitTester.Mocks
 {
     public partial class MockBuilder
     {

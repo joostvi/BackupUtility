@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ZCopy;
+using ZCopy.Classes;
 
 namespace ZCopyUnitTester
 {

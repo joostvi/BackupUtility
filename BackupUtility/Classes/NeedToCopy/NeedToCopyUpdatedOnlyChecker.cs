@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using GenericClassLibrary.FileSystem;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes.NeedToCopy
 {
     public class NeedToCopyUpdatedOnlyChecker : INeedToCopyChecker
     {
         private readonly IFileComparer _fileComparer;
         private readonly IFileSystem _fileSystem;
         private readonly IConfirmationChecker _confirmationChecker;
-
 
         public NeedToCopyUpdatedOnlyChecker(IFileComparer fileComparer, IFileSystem fileSystem, IConfirmationChecker confirmationChecker)
         {
@@ -19,16 +19,15 @@ namespace ZCopy
 
         public bool NeedToCopy(string aSource, string aTarget)
         {
-            bool doCopy = false;
             if (!_fileSystem.File.Exists(aTarget))
             {
-                doCopy = true;
+                return true;
             }
-            else if (_confirmationChecker.GetConfirmation(aTarget))
+            else if (_fileComparer.IsSameFile(new FileInfo(aSource), new FileInfo(aTarget)))
             {
-                doCopy = !_fileComparer.IsSameFile(new FileInfo(aSource), new FileInfo(aTarget));
+                return false;
             }
-            return doCopy;
+            return _confirmationChecker.GetConfirmation(aTarget);
         }
     }
 }

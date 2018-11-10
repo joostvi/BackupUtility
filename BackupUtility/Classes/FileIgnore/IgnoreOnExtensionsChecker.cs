@@ -2,8 +2,9 @@
 using System;
 using System.IO;
 using GenericClassLibrary.FileSystem;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes.FileIgnore
 {
     public class IgnoreOnExtensionsChecker : IFileIgnoreChecker
     {

@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ZCopy;
+using ZCopy.Classes.NeedToCopy;
+using ZCopy.Interfaces;
 using ZCopyUnitTester.Mocks;
 
 namespace ZCopyUnitTester
@@ -27,10 +29,12 @@ namespace ZCopyUnitTester
             file.Files.Add("dummy");
             FileSystemMock fileSystem = new FileSystemMock(file);
             Mock<IConfirmationChecker> confirmation = MockBuilder.CreateIConfirmationChecker(false);
+            Mock<IFileComparer> fileComparere = MockBuilder.CreateIFileComparer(false);
 
-            NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(null, fileSystem, confirmation.Object);
+            NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
             Assert.IsFalse(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.AreEqual(1, fileComparere.Invocations.Count);
             Assert.AreEqual(1, confirmation.Invocations.Count);
         }
 
@@ -46,7 +50,7 @@ namespace ZCopyUnitTester
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
             Assert.IsFalse(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(1, confirmation.Invocations.Count);
+            Assert.AreEqual(0, confirmation.Invocations.Count);
             Assert.AreEqual(1, fileComparere.Invocations.Count);
         }
 

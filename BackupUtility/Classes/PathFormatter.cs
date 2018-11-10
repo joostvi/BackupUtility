@@ -1,4 +1,4 @@
-﻿namespace ZCopy
+﻿namespace ZCopy.Classes
 {
     public class PathFormatter
     {

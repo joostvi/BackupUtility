@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ZCopy
+namespace ZCopy.Interfaces
 {
     public interface IFileComparer
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZCopy
+namespace ZCopy.Interfaces
 {
     public interface IExceptionHandler
     {

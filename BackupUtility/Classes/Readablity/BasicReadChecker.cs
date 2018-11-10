@@ -1,11 +1,13 @@
-﻿namespace ZCopy
+﻿using ZCopy.Interfaces;
+
+namespace ZCopy.Classes.Readability
 {
     public class BasicReadChecker : IFileReadableChecker
     {
         public bool CanReadFile(string aFile)
         {
             // Try if we can read the file
-            if (aFile == null || aFile == "")
+            if (string.IsNullOrEmpty(aFile))
                 return false;
             return true;
         }

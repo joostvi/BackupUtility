@@ -1,6 +1,7 @@
 ﻿using System;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes.ExceptionHandling
 {
     public class StopOnExceptionHandler : IExceptionHandler
     {

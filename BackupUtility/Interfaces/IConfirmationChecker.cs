@@ -1,4 +1,4 @@
-﻿namespace ZCopy
+﻿namespace ZCopy.Interfaces
 {
     public interface IConfirmationChecker
     {

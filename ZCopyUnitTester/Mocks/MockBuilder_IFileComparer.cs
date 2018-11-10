@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Moq;
 using ZCopy;
+using ZCopy.Interfaces;
 
 namespace ZCopyUnitTester.Mocks
 {

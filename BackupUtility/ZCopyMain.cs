@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
+using ZCopy.Classes;
 
 namespace ZCopy
 {

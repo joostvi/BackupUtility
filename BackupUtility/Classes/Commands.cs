@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace ZCopy
+namespace ZCopy.Classes
 {
     public class Commands
     {

@@ -1,10 +1,13 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using GenericClassLibrary.FileSystem;
+﻿using GenericClassLibrary.FileSystem;
+using ZCopy.Classes.NeedToCopy;
+using ZCopy.Classes.ExceptionHandling;
+using ZCopy.Classes.FileIgnore;
+using ZCopy.Classes.Readability;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes 
 {
-    public class CommandHandler : IFileReadableChecker, IFileIgnoreChecker, INeedToCopyChecker
+    public class CommandHandler : IFileReadableChecker, IFileIgnoreChecker, INeedToCopyChecker, IConfirmationChecker
     {
 
         // Private ReadOnly _commands As Commands
@@ -21,6 +24,17 @@ namespace ZCopy
         public void RaiseThisEvent(string theInfo)
         {
             ProcessInfoEvent?.Invoke(theInfo);
+        }
+
+        public delegate bool ConfirmationRequest(string theInfo);
+
+        private readonly ConfirmationRequest _ConfirmationRequest;
+
+        public bool GetConfirmation(string aTarget)
+        {
+            if (_ConfirmationRequest != null)
+                return _ConfirmationRequest.Invoke(aTarget);
+            return true;
         }
 
         public CommandHandler(Commands commands)
@@ -42,14 +56,13 @@ namespace ZCopy
             else
                 _fileIgnoreChecker = new IgnoreNoneChecker();
 
-            ConfirmationChecker confirmationChecker = new ConfirmationChecker(commands.RequestConfirm);
             if (commands.UpdatedOnly)
             {
-                _needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), confirmationChecker);
+                _needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), this);
             }
             else
             {
-                throw new NotImplementedException("command to copy always not implemented");
+                _needToCopyChecker = new NeedToCopyWithConfirmation(new FileSystem(), this);
             }
         }
 

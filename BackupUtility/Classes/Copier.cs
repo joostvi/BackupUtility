@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using GenericClassLibrary.FileSystem;
 using System.IO;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes
 {
     public class Copier
     {

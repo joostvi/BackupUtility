@@ -1,4 +1,6 @@
-﻿namespace ZCopy
+﻿using ZCopy.Interfaces;
+
+namespace ZCopy.Classes.FileIgnore
 {
     public class IgnoreNoneChecker : IFileIgnoreChecker
     {

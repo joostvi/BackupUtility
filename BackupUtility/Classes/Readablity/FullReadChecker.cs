@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using ZCopy.Interfaces;
 
-namespace ZCopy
+namespace ZCopy.Classes.Readability
 {
     public class FullReadChecker : IFileReadableChecker
     {
