@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZCopy", "BackupUtility\ZCopy.csproj", "{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ZCopy", "BackupUtility\ZCopy.vbproj", "{6CD73481-CAA6-4E96-AB7B-240C6E73F837}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ZCopyTester", "ZCopyTester\ZCopyTester.vbproj", "{0DED5833-2FF1-43E8-B2FA-285535214374}"
 EndProject
@@ -19,10 +19,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6CD73481-CAA6-4E96-AB7B-240C6E73F837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD73481-CAA6-4E96-AB7B-240C6E73F837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD73481-CAA6-4E96-AB7B-240C6E73F837}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD73481-CAA6-4E96-AB7B-240C6E73F837}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{0DED5833-2FF1-43E8-B2FA-285535214374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DED5833-2FF1-43E8-B2FA-285535214374}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DED5833-2FF1-43E8-B2FA-285535214374}.Release|Any CPU.ActiveCfg = Release|Any CPU

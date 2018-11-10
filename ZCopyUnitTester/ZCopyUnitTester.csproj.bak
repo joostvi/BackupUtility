@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibraryTests\GenericClassLibraryTests.csproj" />
-    <ProjectReference Include="..\BackupUtility\ZCopy.csproj" />
+    <ProjectReference Include="..\BackupUtility\ZCopy.vbproj" />
   </ItemGroup>
 
 </Project>

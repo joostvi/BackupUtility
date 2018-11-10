@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6CD73481-CAA6-4E96-AB7B-240C6E73F837}</ProjectGuid>
+    <ProjectGuid>{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <StartupObject>ZCopy.ZCopyMain</StartupObject>
     <RootNamespace>ZCopy</RootNamespace>
@@ -46,6 +46,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -72,37 +73,37 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Commands.vb" />
-    <Compile Include="Classes\ConfirmationChecker.vb" />
-    <Compile Include="Classes\Copier.vb" />
-    <Compile Include="Classes\CommandHandler.vb" />
-    <Compile Include="Classes\ExceptionHandling\StopOnExceptionHandler.vb" />
-    <Compile Include="Classes\ExceptionHandling\ContinueOnExceptionHandler.vb" />
-    <Compile Include="Classes\FileComparer.vb" />
-    <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.vb" />
-    <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.vb" />
-    <Compile Include="Interfaces\IConfirmationChecker.vb" />
-    <Compile Include="Classes\NeedToCopy\NeedToCopyUpdatedOnlyChecker.vb" />
-    <Compile Include="Classes\Readablity\BasicReadChecker.vb" />
-    <Compile Include="Classes\Readablity\FullReadChecker.vb" />
-    <Compile Include="Interfaces\IFileReadableChecker.vb" />
-    <Compile Include="Interfaces\IExceptionHandler.vb" />
-    <Compile Include="Interfaces\IFileComparer.vb" />
-    <Compile Include="Classes\PathFormatter.vb" />
-    <Compile Include="Interfaces\IFileIgnoreChecker.vb" />
-    <Compile Include="Interfaces\INeedToCopyChecker.vb" />
-    <Compile Include="My Project\Resources.Designer.vb">
+    <Compile Include="Classes\Commands.cs" />
+    <Compile Include="Classes\ConfirmationChecker.cs" />
+    <Compile Include="Classes\Copier.cs" />
+    <Compile Include="Classes\CommandHandler.cs" />
+    <Compile Include="Classes\ExceptionHandling\StopOnExceptionHandler.cs" />
+    <Compile Include="Classes\ExceptionHandling\ContinueOnExceptionHandler.cs" />
+    <Compile Include="Classes\FileComparer.cs" />
+    <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.cs" />
+    <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.cs" />
+    <Compile Include="Interfaces\IConfirmationChecker.cs" />
+    <Compile Include="Classes\NeedToCopy\NeedToCopyUpdatedOnlyChecker.cs" />
+    <Compile Include="Classes\Readablity\BasicReadChecker.cs" />
+    <Compile Include="Classes\Readablity\FullReadChecker.cs" />
+    <Compile Include="Interfaces\IFileReadableChecker.cs" />
+    <Compile Include="Interfaces\IExceptionHandler.cs" />
+    <Compile Include="Interfaces\IFileComparer.cs" />
+    <Compile Include="Classes\PathFormatter.cs" />
+    <Compile Include="Interfaces\IFileIgnoreChecker.cs" />
+    <Compile Include="Interfaces\INeedToCopyChecker.cs" />
+    <Compile Include="My Project\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ZCopyMain.vb" />
-    <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
+    <Compile Include="ZCopyMain.cs" />
+    <Compile Include="My Project\AssemblyInfo.cs" />
+    <Compile Include="My Project\Application.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Settings.Designer.vb">
+    <Compile Include="My Project\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -113,19 +114,19 @@
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +135,7 @@
       <Name>GenericClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

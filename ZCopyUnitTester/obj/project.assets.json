@@ -379,8 +379,8 @@
     },
     "ZCopy/1.0.0": {
       "type": "project",
-      "path": "../BackupUtility/ZCopy.vbproj",
-      "msbuildProject": "../BackupUtility/ZCopy.vbproj"
+      "path": "../BackupUtility/ZCopy.csproj",
+      "msbuildProject": "../BackupUtility/ZCopy.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -425,8 +425,8 @@
             "C:\\Users\\Joost\\Documents\\GitHub\\LiveDirectorySyncEngine\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj": {
               "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\LiveDirectorySyncEngine\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj"
             },
-            "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.vbproj": {
-              "projectPath": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.vbproj"
+            "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.csproj"
             }
           }
         }

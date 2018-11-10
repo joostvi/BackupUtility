@@ -128,8 +128,8 @@
       <Project>{9d5af04b-4f77-4363-9d2e-1968dd664b2d}</Project>
       <Name>GenericClassLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BackupUtility\ZCopy.csproj">
-      <Project>{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}</Project>
+    <ProjectReference Include="..\BackupUtility\ZCopy.vbproj">
+      <Project>{6cd73481-caa6-4e96-ab7b-240c6e73f837}</Project>
       <Name>ZCopy</Name>
     </ProjectReference>
   </ItemGroup>
