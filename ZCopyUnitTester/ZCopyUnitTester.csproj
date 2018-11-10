@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.10.0" />
+	  <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
+  <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibraryTests\GenericClassLibraryTests.csproj" />
+    <ProjectReference Include="..\BackupUtility\ZCopy.vbproj" />
+  </ItemGroup>
+
+</Project>
