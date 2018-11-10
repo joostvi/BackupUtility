@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Commands.vb" />
+    <Compile Include="Classes\ConfirmationChecker.vb" />
     <Compile Include="Classes\Copier.vb" />
     <Compile Include="Classes\CommandHandler.vb" />
     <Compile Include="Classes\ExceptionHandling\StopOnExceptionHandler.vb" />
@@ -80,6 +81,8 @@
     <Compile Include="Classes\FileComparer.vb" />
     <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.vb" />
     <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.vb" />
+    <Compile Include="Interfaces\IConfirmationChecker.vb" />
+    <Compile Include="Classes\NeedToCopy\NeedToCopyUpdatedOnlyChecker.vb" />
     <Compile Include="Classes\Readablity\BasicReadChecker.vb" />
     <Compile Include="Classes\Readablity\FullReadChecker.vb" />
     <Compile Include="Interfaces\FileReadableChecker.vb" />
@@ -87,6 +90,7 @@
     <Compile Include="Interfaces\IFileComparer.vb" />
     <Compile Include="Classes\PathFormatter.vb" />
     <Compile Include="Interfaces\IFileIgnoreChecker.vb" />
+    <Compile Include="Interfaces\INeedToCopyChecker.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

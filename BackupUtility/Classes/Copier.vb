@@ -35,20 +35,12 @@ Public Class Copier
             If Not _fileSystem.File.Exists(aTarget) Then
                 doCopy = True
             Else
-                If _commands.RequestConfirm AndAlso _ConfirmationRequest IsNot Nothing Then
-                    If _ConfirmationRequest(aTarget) Then
-                        doCopy = Not _fileComparer.IsSameFile(New FileInfo(aFile), New FileInfo(aTarget))
-                    End If
-                Else
+                If ConfirmTheRequest(aTarget) Then
                     doCopy = Not _fileComparer.IsSameFile(New FileInfo(aFile), New FileInfo(aTarget))
                 End If
             End If
         Else
-            If _commands.RequestConfirm AndAlso _ConfirmationRequest IsNot Nothing Then
-                If _ConfirmationRequest(aTarget) Then
-                    doCopy = True
-                End If
-            Else
+            If ConfirmTheRequest(aTarget) Then
                 doCopy = True
             End If
         End If
@@ -75,6 +67,13 @@ Public Class Copier
             End If
         End If
     End Sub
+
+    Private Function ConfirmTheRequest(aTarget As String) As Boolean
+        If _commands.RequestConfirm AndAlso _ConfirmationRequest IsNot Nothing Then
+            Return _ConfirmationRequest(aTarget)
+        End If
+        Return True
+    End Function
 
     Private Function FolderExists(ByVal aFolder As String) As Boolean
         Dim exists As Boolean = False
