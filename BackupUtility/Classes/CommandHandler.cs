@@ -4,18 +4,19 @@ using ZCopy.Classes.ExceptionHandling;
 using ZCopy.Classes.FileIgnore;
 using ZCopy.Classes.Readability;
 using ZCopy.Interfaces;
+using System;
+using System.IO;
 
-namespace ZCopy.Classes 
+namespace ZCopy.Classes
 {
-    public class CommandHandler : IFileReadableChecker, IFileIgnoreChecker, INeedToCopyChecker, IConfirmationChecker, IEventLogger
+    public class CommandHandler : ICommandHandler
     {
 
-        // Private ReadOnly _commands As Commands
-
         private readonly IFileReadableChecker _fileReadableChecker;
-        private readonly IExceptionHandler ExceptionHandler;
+        private readonly IExceptionHandler _exceptionHandler;
         private readonly IFileIgnoreChecker _fileIgnoreChecker;
         private readonly INeedToCopyChecker _needToCopyChecker;
+        private readonly IFileSystem _fileSystem;
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
@@ -36,18 +37,18 @@ namespace ZCopy.Classes
         {
             // _commands = commands
 
-            IFileSystem fileSystem = new FileSystem();
+            _fileSystem = new FileSystem();
             if (commands.SkipCopyErrors)
-                ExceptionHandler = new ContinueOnExceptionHandler(this);
+                _exceptionHandler = new ContinueOnExceptionHandler(this);
             else
-                ExceptionHandler = new StopOnExceptionHandler();
+                _exceptionHandler = new StopOnExceptionHandler();
 
             if (commands.ReadCheckFirst)
-                _fileReadableChecker = new FullReadChecker(ExceptionHandler);
+                _fileReadableChecker = new FullReadChecker(_exceptionHandler);
             else
                 _fileReadableChecker = new BasicReadChecker();
             if (commands.ExclusiveExt.Length > 0)
-                _fileIgnoreChecker = new IgnoreOnExtensionsChecker(commands.ExclusiveExt, fileSystem, ExceptionHandler);
+                _fileIgnoreChecker = new IgnoreOnExtensionsChecker(commands.ExclusiveExt, _fileSystem, _exceptionHandler);
             else
                 _fileIgnoreChecker = new IgnoreNoneChecker();
 
@@ -79,6 +80,50 @@ namespace ZCopy.Classes
         public void LogEvent(string message)
         {
             ProcessInfoEvent?.Invoke(message);
+        }
+
+        public void CopyFile(string aFile, string aTarget)
+        {
+            try
+            {
+                _fileSystem.File.Copy(aFile, aTarget, true);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+               _exceptionHandler.HandleException("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")", ex);
+            }
+            catch (IOException ex)
+            {
+                _exceptionHandler.HandleException("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")", ex);
+            }
+        }
+
+        public bool CreateDirectory(string theTarget)
+        {
+            if (_fileSystem.Directory.Exists(theTarget))
+            {
+                return true;
+            }
+
+            bool result = false;
+            // Target folder does not exist Create it
+            ProcessInfoEvent?.Invoke("Create directory: " + theTarget);
+            try
+            {
+                _fileSystem.Directory.Create(theTarget);
+                result = true;
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                _exceptionHandler.HandleException("Failed to create directory " + theTarget + "(" + ex.Message + ")", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        public void HandleException(string message, Exception ex)
+        {
+            _exceptionHandler.HandleException(message, ex);
         }
     }
 }

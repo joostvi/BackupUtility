@@ -7,22 +7,20 @@ namespace ZCopy.Classes
 {
     public class Copier
     {
-        private Commands _commands;
+        private readonly Commands _commands;
         private readonly IFileSystem _fileSystem;
-        private readonly IFileComparer _fileComparer;
-        private CommandHandler _copierComponents;
+        private readonly ICommandHandler _commandHandler;
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
         public delegate void ProcessInfoEventEventHandler(string theInfo);
 
-        public Copier(Commands theCommands, CommandHandler commandHandler)
+        public Copier(Commands theCommands, ICommandHandler commandHandler)
         {
             _fileSystem = new FileSystem();
-            _fileComparer = new FileComparer();
             // Just in case clown.
             _commands = theCommands.Clone();
-            _copierComponents = commandHandler;
+            _commandHandler = commandHandler;
         }
 
         private void CopyFile(string aFile)
@@ -31,86 +29,43 @@ namespace ZCopy.Classes
             if (aFile == null || aFile == "")
                 return;
 
-            if (_copierComponents.IgnoreFile(aFile))
+            if (_commandHandler.IgnoreFile(aFile))
                 return;
 
             string aTarget = aFile.Replace(_commands.Source, _commands.Target);
 
-            bool doCopy = _copierComponents.NeedToCopy(_commands.Source, aTarget);
+            bool doCopy = _commandHandler.NeedToCopy(_commands.Source, aTarget);
 
             if (doCopy)
             {
                 ProcessInfoEvent?.Invoke("Copy File: " + aFile + " to " + aTarget);
-                if (_copierComponents.CanReadFile(aFile))
+                if (_commandHandler.CanReadFile(aFile))
                 {
                     // Try if we can copy the file.
-                    try
-                    {
-                        _fileSystem.File.Copy(aFile, aTarget, true);
-                    }
-                    catch (UnauthorizedAccessException ex)
-                    {
-                        if (_commands.SkipCopyErrors)
-                            ProcessInfoEvent?.Invoke("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")");
-                        else
-                            throw;
-                    }
-                    catch (IOException ex)
-                    {
-                        if (_commands.SkipCopyErrors)
-                            ProcessInfoEvent?.Invoke("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")");
-                        else
-                            throw;
-                    }
+                    _commandHandler.CopyFile(aFile, aTarget);
                 }
             }
         }
 
         private bool FolderExists(string aFolder)
         {
-            bool exists = false;
             // Check input
-            if (!_fileSystem.Directory.Exists(aFolder))
+            if (_fileSystem.Directory.Exists(aFolder))
             {
-                string msgText = "Source directory(" + aFolder + ") not found!";
-                if (!_commands.SkipCopyErrors)
-                    throw new DirectoryNotFoundException(msgText);
-                else
-                    // Directory not found and we don't want errors.
-                    ProcessInfoEvent?.Invoke(msgText);
+                return true;
             }
-            else
-                exists = true;
-            return exists;
+            string msgText = "Source directory(" + aFolder + ") not found!";
+            _commandHandler.HandleException(msgText, new DirectoryNotFoundException(msgText));
+            return false;
         }
 
-        private bool CreateTarget(string aFolder)
+        private bool CreateTargetDirectory(string aFolder)
         {
-            bool result = false;
             // OK copy files in this directory.
             // First check if target folder exists.
             string theTarget = aFolder.Replace(_commands.Source, _commands.Target);
             // if already exists we don't need to create it
-            if (!_fileSystem.Directory.Exists(theTarget))
-            {
-                // Target folder does not exist Create it
-                ProcessInfoEvent?.Invoke("Create directory: " + theTarget);
-                try
-                {
-                    _fileSystem.Directory.Create(theTarget);
-                    result = true;
-                }
-                catch (DirectoryNotFoundException ex)
-                {
-                    if (!_commands.SkipCopyErrors)
-                        // Don't want to skip errors.
-                        throw ex;
-                    result = false;
-                }
-            }
-            else
-                result = true;
-            return result;
+            return _commandHandler.CreateDirectory(theTarget);
         }
 
         private void ProcessSubfolders(string aFolder)
@@ -126,13 +81,12 @@ namespace ZCopy.Classes
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    if (!_commands.SkipCopyErrors)
-                        // Don't want to skip errors.
-                        throw ex;
+                    _commandHandler.HandleException($"Failed to read directories within directory {aFolder}", ex);
                 }
-
                 foreach (var aDirectory in directories)
+                {
                     ThisDirectory(aDirectory);
+                }
             }
         }
 
@@ -147,27 +101,24 @@ namespace ZCopy.Classes
 
             ProcessInfoEvent?.Invoke("Process directory: " + aFolder);
 
-            if (!CreateTarget(aFolder))
+            if (!CreateTargetDirectory(aFolder))
                 return;
 
-            string[] theFiles = new string[1];
+            string[] theFiles;
 
             // Now copy files
             try
             {
                 theFiles = _fileSystem.Directory.GetFiles(aFolder);
+                foreach (string aFile in theFiles)
+                {
+                    CopyFile(aFile);
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
-                if (!_commands.SkipCopyErrors)
-                    // Don't want to skip errors.
-                    throw ex;
-                else
-                    ProcessInfoEvent?.Invoke("Could not read directories of folder: " + aFolder + "(" + ex.Message + ")");
+                _commandHandler.HandleException("Could not read directories of folder: " + aFolder + "(" + ex.Message + ")", ex);
             }
-
-            foreach (string aFile in theFiles)
-                CopyFile(aFile);
             ProcessSubfolders(aFolder);
         }
 
