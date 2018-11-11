@@ -131,8 +131,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibrary\GenericClassLibrary.csproj">
-      <Project>{9d5af04b-4f77-4363-9d2e-1968dd664b2d}</Project>
+    <ProjectReference Include="..\generic\GenericClassLibrary\GenericClassLibrary.csproj">
+      <Project>{bbcdf61a-e091-4507-80b1-2a5a4d4aabb4}</Project>
       <Name>GenericClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>

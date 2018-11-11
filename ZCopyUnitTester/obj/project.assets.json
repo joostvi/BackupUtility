@@ -369,13 +369,13 @@
     },
     "GenericClassLibrary/1.0.0": {
       "type": "project",
-      "path": "../../../GitHub/LiveDirectorySyncEngine/GenericClassLibrary/GenericClassLibrary.csproj",
-      "msbuildProject": "../../../GitHub/LiveDirectorySyncEngine/GenericClassLibrary/GenericClassLibrary.csproj"
+      "path": "../generic/GenericClassLibrary/GenericClassLibrary.csproj",
+      "msbuildProject": "../generic/GenericClassLibrary/GenericClassLibrary.csproj"
     },
     "GenericClassLibraryTests/1.0.0": {
       "type": "project",
-      "path": "../../../GitHub/LiveDirectorySyncEngine/GenericClassLibraryTests/GenericClassLibraryTests.csproj",
-      "msbuildProject": "../../../GitHub/LiveDirectorySyncEngine/GenericClassLibraryTests/GenericClassLibraryTests.csproj"
+      "path": "../generic/GenericClassLibraryTests/GenericClassLibraryTests.csproj",
+      "msbuildProject": "../generic/GenericClassLibraryTests/GenericClassLibraryTests.csproj"
     },
     "ZCopy/1.0.0": {
       "type": "project",
@@ -385,6 +385,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
+      "GenericClassLibrary >= 1.0.0",
       "GenericClassLibraryTests >= 1.0.0",
       "MSTest.TestAdapter >= 1.3.2",
       "MSTest.TestFramework >= 1.3.2",
@@ -399,11 +400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\ZCopyUnitTester\\ZCopyUnitTester.csproj",
+      "projectUniqueName": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyUnitTester\\ZCopyUnitTester.csproj",
       "projectName": "ZCopyUnitTester",
-      "projectPath": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\ZCopyUnitTester\\ZCopyUnitTester.csproj",
+      "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyUnitTester\\ZCopyUnitTester.csproj",
       "packagesPath": "C:\\Users\\Joost\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\ZCopyUnitTester\\obj\\",
+      "outputPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyUnitTester\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -422,11 +423,14 @@
       "frameworks": {
         "net461": {
           "projectReferences": {
-            "C:\\Users\\Joost\\Documents\\GitHub\\LiveDirectorySyncEngine\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj": {
-              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\LiveDirectorySyncEngine\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj"
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj"
             },
-            "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.csproj": {
-              "projectPath": "C:\\Users\\Joost\\Documents\\Projects\\BackupUtility\\BackupUtility\\ZCopy.csproj"
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj"
+            },
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj"
             }
           }
         }

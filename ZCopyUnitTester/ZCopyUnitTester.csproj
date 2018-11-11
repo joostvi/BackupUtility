@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibraryTests\GenericClassLibraryTests.csproj" />
     <ProjectReference Include="..\BackupUtility\ZCopy.csproj" />
+    <ProjectReference Include="..\generic\GenericClassLibraryTests\GenericClassLibraryTests.csproj" />
+    <ProjectReference Include="..\generic\GenericClassLibrary\GenericClassLibrary.csproj" />
   </ItemGroup>
 
 </Project>

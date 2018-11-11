@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZCopy", "BackupUtility\ZCopy.csproj", "{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericClassLibrary", "..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibrary\GenericClassLibrary.csproj", "{9D5AF04B-4F77-4363-9D2E-1968DD664B2D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericClassLibraryTests", "..\..\GitHub\LiveDirectorySyncEngine\GenericClassLibraryTests\GenericClassLibraryTests.csproj", "{D744E682-A448-40BB-A344-9F3A9AF15CD7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZCopyUnitTester", "ZCopyUnitTester\ZCopyUnitTester.csproj", "{439A61B8-58DD-4A24-87FF-094A4E552045}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generic", "generic", "{CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericClassLibrary", "generic\GenericClassLibrary\GenericClassLibrary.csproj", "{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericClassLibraryTests", "generic\GenericClassLibraryTests\GenericClassLibraryTests.csproj", "{088B65B7-4744-4187-80DD-BC52BB03B790}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,21 +23,25 @@ Global
 		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{DEF3B5EA-06FE-0167-2923-EE720CE4CC97}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{9D5AF04B-4F77-4363-9D2E-1968DD664B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D5AF04B-4F77-4363-9D2E-1968DD664B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D5AF04B-4F77-4363-9D2E-1968DD664B2D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D5AF04B-4F77-4363-9D2E-1968DD664B2D}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{D744E682-A448-40BB-A344-9F3A9AF15CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D744E682-A448-40BB-A344-9F3A9AF15CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D744E682-A448-40BB-A344-9F3A9AF15CD7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{D744E682-A448-40BB-A344-9F3A9AF15CD7}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{439A61B8-58DD-4A24-87FF-094A4E552045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{439A61B8-58DD-4A24-87FF-094A4E552045}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439A61B8-58DD-4A24-87FF-094A4E552045}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439A61B8-58DD-4A24-87FF-094A4E552045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088B65B7-4744-4187-80DD-BC52BB03B790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088B65B7-4744-4187-80DD-BC52BB03B790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088B65B7-4744-4187-80DD-BC52BB03B790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088B65B7-4744-4187-80DD-BC52BB03B790}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4} = {CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}
+		{088B65B7-4744-4187-80DD-BC52BB03B790} = {CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE48D81D-B0E0-4A1F-BEDC-EF618FA4E1D0}
