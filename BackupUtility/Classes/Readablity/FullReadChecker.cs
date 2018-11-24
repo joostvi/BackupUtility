@@ -6,7 +6,7 @@ namespace ZCopy.Classes.Readability
 {
     public class FullReadChecker : IFileReadableChecker
     {
-        private IExceptionHandler _exceptionHandler;
+        private readonly IExceptionHandler _exceptionHandler;
 
         public FullReadChecker(IExceptionHandler exceptionHandler)
         {
@@ -36,38 +36,23 @@ namespace ZCopy.Classes.Readability
                     if (length > int.MaxValue)
                         readBytes = int.MaxValue;
                     else
-                        readBytes = System.Convert.ToInt32(length);
+                        readBytes = Convert.ToInt32(length);
                     aBR.ReadBytes(readBytes);
                     length -= readBytes;
                 }
-
-                // Dim aByteArry() As Byte = File.ReadAllBytes(aFile)
                 canRead = true;
             }
             catch (UnauthorizedAccessException ex)
             {
-                // If _commands.SkipCopyErrors Then
-                // RaiseEvent ProcessInfoEvent()
-                // Else
-                // Throw ex
-                // End If
                 _exceptionHandler.HandleException("Failed to read " + aFile + "(" + ex.Message + ")", ex);
             }
             catch (IOException ex)
             {
-                // If _commands.SkipCopyErrors Then
-                // RaiseEvent ProcessInfoEvent("Failed to read " & aFile & "(" & ex.Message & ")")
-                // Else
-                // Throw ex
-                // End If
-
                 _exceptionHandler.HandleException("Failed to read " + aFile + "(" + ex.Message + ")", ex);
             }
             catch (OutOfMemoryException ex)
             {
-                // not enough memory to read file hopefully we can copy it. 
-                // TODO: might think about copy with other name or better check for read.
-                canRead = true;
+                _exceptionHandler.HandleException("Failed to read " + aFile + "(" + ex.Message + ")", ex);
             }
             finally
             {
@@ -75,10 +60,8 @@ namespace ZCopy.Classes.Readability
                 {
                     aStream.Close();
                     aStream.Dispose();
-                    aStream = null;
                 }
             }
-
             return canRead;
         }
     }

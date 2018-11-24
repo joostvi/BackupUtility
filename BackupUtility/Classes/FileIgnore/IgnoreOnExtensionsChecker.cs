@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using GenericClassLibrary.FileSystem;
 using System;
 using System.IO;
-using GenericClassLibrary.FileSystem;
+using System.Linq;
 using ZCopy.Interfaces;
 
 namespace ZCopy.Classes.FileIgnore
@@ -16,17 +16,28 @@ namespace ZCopy.Classes.FileIgnore
         {
             _fileSystem = fileSystem;
             _exceptionHandler = exceptionHandler;
-            _exclusiveExt = exclusiveExt;
+            if (exclusiveExt != null)
+            {
+                _exclusiveExt = exclusiveExt.Select(a => a.ToLower()).ToArray();
+            }
+            else
+            {
+                _exclusiveExt = new string[0];
+            }
         }
 
         public bool IgnoreFile(string file)
         {
             try
             {
-                if (_fileSystem.File.GetExtension(file).Length > 0)
+                if (_exclusiveExt.Length == 0)
                 {
-                    if (_exclusiveExt.Contains(_fileSystem.File.GetExtension(file).Substring(1)))
-                        return true;
+                    return false;
+                }
+                string fileExtension = _fileSystem.File.GetExtension(file).ToLower();
+                if (fileExtension.Length > 0 && _exclusiveExt.Contains(fileExtension.Substring(1)))
+                {
+                    return true;
                 }
             }
             catch (UnauthorizedAccessException ex)
