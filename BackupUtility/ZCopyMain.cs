@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenericClassLibrary.Logging;
+using System;
 using ZCopy.Classes;
 
 namespace ZCopy
@@ -10,12 +11,14 @@ namespace ZCopy
         {
             try
             {
+                Logger.Level = EnumLogLevel.Info;
+                Logger.AddLogger(new ConsoleLogger());
                 Commands theCommands = new Commands(args);
                 if (theCommands.ShowHelp)
-                    Console.WriteLine(Commands.Help());
+                    Logger.Info(Commands.Help());
                 else
                 {
-                    Console.WriteLine("Copy started.");
+                    Logger.Info("Copy started.");
                     CommandHandler CommandHandler = new CommandHandler(theCommands);
                     Copier Copier = new Copier(theCommands, CommandHandler);
                     Copier.ProcessInfoEvent += ProcessInfo_ProcessInfoEvent;
@@ -23,24 +26,21 @@ namespace ZCopy
                     CommandHandler.ConfirmationRequestHandler += ConfirmationRequest;
                     Copier.Copy();
                     if (theCommands.PauseWhenDone)
-                        Console.WriteLine("Copy done.");
+                        Logger.Info("Copy done.");
                 }
             }
             catch (System.IO.DirectoryNotFoundException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.Error(ex.Message);
             }
             catch (UnauthorizedAccessException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.Error(ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                Logger.Error("Failed with an unexpected exception.", ex);
             }
-
-
 
             Console.ReadKey();
         }
@@ -54,7 +54,7 @@ namespace ZCopy
 
         private static void ProcessInfo_ProcessInfoEvent(string theInfo)
         {
-            Console.WriteLine(theInfo);
+            Logger.Info(theInfo);
         }
     }
 }

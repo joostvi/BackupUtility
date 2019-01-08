@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using System;
+using GenericClassLibrary.Logging;
 
 namespace ZCopy.Classes
 {
@@ -56,9 +57,9 @@ namespace ZCopy.Classes
             {
                 // Check other parms 
                 // 0 should be source
-                Console.WriteLine("args(0)=" + args[0]);
+                Logger.Info("args(0)=" + args[0]);
                 Source = PathFormatter.FormatPath(args[0]);
-                Console.WriteLine("source=" + Source);
+                Logger.Info("source=" + Source);
                 // 1 should be targed
                 Target = FormatTarget(args[1]);
                 UpdatedOnly = args.Contains("/d", new CommandStringComparer());
