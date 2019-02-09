@@ -1,25 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using ZCopy.Classes;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("PathFormatterTester")]
     public class PathFormatterTester
     {
-        [TestMethod()]
+        [Fact()]
         public void TestWithDoubleQoutesAndSlash()
         {
             string input = @"c:\user\joost\""";
             string expected = @"c:\user\joost\";
-            Assert.AreEqual(expected, PathFormatter.FormatPath(input));
+            Assert.Equal(expected, PathFormatter.FormatPath(input));
         }
 
-        [TestMethod()]
+        [Fact()]
         public void TestWithDoubleQoutesNoSlash()
         {
             string input = @"c:\user\joost""";
             string expected = @"c:\user\joost";
-            Assert.AreEqual(expected, PathFormatter.FormatPath(input));
+            Assert.Equal(expected, PathFormatter.FormatPath(input));
         }
     }
 }

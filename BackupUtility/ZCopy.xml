@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZCopy</name>
+    </assembly>
+    <members>
+        <member name="T:ZCopy.Classes.ProcessInfoEventArgs">
+            <summary>
+            Event data of process info event.
+            </summary>
+        </member>
+        <member name="P:ZCopy.Classes.ProcessInfoEventArgs.Info">
+            <summary>
+            Info about process state.
+            </summary>
+        </member>
+        <member name="M:ZCopy.Classes.ProcessInfoEventArgs.#ctor(System.String)">
+            <summary>
+            The info about process state which should be communicated
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="P:ZCopy.ZCopy.My.Resources.Resources.ResourceManager">
+            <summary>
+            Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ZCopy.ZCopy.My.Resources.Resources.Culture">
+            <summary>
+            Overrides the current thread's CurrentUICulture property for all
+            resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

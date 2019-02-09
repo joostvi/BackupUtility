@@ -1,5 +1,5 @@
 ﻿using GenericClassLibraryTests.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Moq;
 using ZCopy.Classes.NeedToCopy;
 using ZCopy.Interfaces;
@@ -7,20 +7,20 @@ using ZCopyUnitTester.Mocks;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("NeedToCopyWithConfirmationTester")]
     public  class NeedToCopyWithConfirmationTester
     {
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_Filenew()
         {
             FileMock file = new FileMock(null);
             FileSystemMock fileSystem = new FileSystemMock(file);
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, null);
             
-            Assert.IsTrue(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
         }
 
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_ConfirmationForExistingFile()
         {
             FileMock file = new FileMock(null);
@@ -30,11 +30,11 @@ namespace ZCopyUnitTester
             
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, confirmation.Object);
 
-            Assert.IsTrue(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(1, confirmation.Invocations.Count);
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.Equal(1, confirmation.Invocations.Count);
         }
 
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_NoConfirmationForExistingFile()
         {
             FileMock file = new FileMock(null);
@@ -44,8 +44,8 @@ namespace ZCopyUnitTester
 
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, confirmation.Object);
 
-            Assert.IsFalse(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(1, confirmation.Invocations.Count);
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.Equal(1, confirmation.Invocations.Count);
         }
     }
 }

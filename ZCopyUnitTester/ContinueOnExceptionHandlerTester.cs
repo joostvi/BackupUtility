@@ -1,20 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZCopy.Classes.ExceptionHandling;
 using ZCopy.Interfaces;
 using ZCopyUnitTester.Mocks;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("ContinueOnExceptionHandlerTester")]
     public class ContinueOnExceptionHandlerTester
     {
-        [TestMethod]
+        [Fact]
         public void HandleException_ExpectMessageToBeLogged()
         {
             const string message = "This is the message";
@@ -24,11 +20,11 @@ namespace ZCopyUnitTester
             Exception ex = new Exception(exceptionMessage);
             handler.HandleException(message, ex);
 
-            Assert.AreEqual(1, eventLogger.Invocations.Count);
+            Assert.Equal(1, eventLogger.Invocations.Count);
             eventLogger.Verify(a => a.LogEvent(message));
         }
 
-        [TestMethod]
+        [Fact]
         public void HandleException_ExpectExceptionToBeLogged_WhenNoMessage()
         {
             const string message = "This is the message";
@@ -38,7 +34,7 @@ namespace ZCopyUnitTester
             Exception ex = new Exception(exceptionMessage);
             handler.HandleException(null, ex);
 
-            Assert.AreEqual(1, eventLogger.Invocations.Count);
+            Assert.Equal(1, eventLogger.Invocations.Count);
             eventLogger.Verify(a => a.LogEvent(exceptionMessage));
         }
     }

@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using ZCopy.Classes;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("CommandTester")]
     public class CommandTester
     {
-        [TestMethod()]
+        [Fact]
         public void TestCreateWithSourceEndsOnQuoate()
         {
             string[] args = new string[2];
@@ -16,7 +16,7 @@ namespace ZCopyUnitTester
             args[0] = input;
             args[1] = "somepath";
 
-            Assert.AreEqual(expected, new Commands(args).Source);
+            Assert.Equal(expected, new Commands(args).Source);
 
         }
     }

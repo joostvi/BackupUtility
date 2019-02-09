@@ -1,17 +1,16 @@
 ﻿using GenericClassLibraryTests.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Moq;
-using ZCopy;
 using ZCopy.Classes.NeedToCopy;
 using ZCopy.Interfaces;
 using ZCopyUnitTester.Mocks;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("NeedToCopyUpdatedOnlyCheckerTester")]
     public class NeedToCopyUpdatedOnlyCheckerTester
     {
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_Filenew()
         {
             FileMock file = new FileMock(null);
@@ -19,10 +18,10 @@ namespace ZCopyUnitTester
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(null, fileSystem, null);
 
 
-            Assert.IsTrue(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
         }
 
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_NoConfirmationForExistingFile()
         {
             FileMock file = new FileMock(null);
@@ -33,12 +32,12 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
-            Assert.IsFalse(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(1, fileComparere.Invocations.Count);
-            Assert.AreEqual(1, confirmation.Invocations.Count);
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.Equal(1, fileComparere.Invocations.Count);
+            Assert.Equal(1, confirmation.Invocations.Count);
         }
 
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_WithConfirmationForExistingFile_EqualFiles()
         {
             FileMock file = new FileMock(null);
@@ -49,12 +48,12 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
-            Assert.IsFalse(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(0, confirmation.Invocations.Count);
-            Assert.AreEqual(1, fileComparere.Invocations.Count);
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.Equal(0, confirmation.Invocations.Count);
+            Assert.Equal(1, fileComparere.Invocations.Count);
         }
 
-        [TestMethod()]
+        [Fact()]
         public void NeedToCopy_WithConfirmationForExistingFile_DifferentFiles()
         {
             FileMock file = new FileMock(null);
@@ -65,9 +64,9 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
             
-            Assert.IsTrue(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
-            Assert.AreEqual(1, confirmation.Invocations.Count);
-            Assert.AreEqual(1, fileComparere.Invocations.Count);
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.Equal(1, confirmation.Invocations.Count);
+            Assert.Equal(1, fileComparere.Invocations.Count);
         }
     }
 }

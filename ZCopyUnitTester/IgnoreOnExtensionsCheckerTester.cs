@@ -1,62 +1,61 @@
 ﻿using GenericClassLibrary.FileSystem;
 using GenericClassLibraryTests.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+using Xunit;
 using ZCopy.Classes.FileIgnore;
 using ZCopy.Interfaces;
 using ZCopyUnitTester.Mocks;
 
 namespace ZCopyUnitTester
 {
-    [TestClass()]
+    [Collection("IgnoreOnExtensionsCheckerTester")]
     public class IgnoreOnExtensionsCheckerTester
     {
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_IsNull()
         {
             string[] exclusiveEx = null;
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsFalse(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile("blabla.txt"));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_IsEmpty()
         {
             string[] exclusiveEx = new string[0];
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsFalse(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile("blabla.txt"));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_ContainsOtherValues()
         {
             string[] exclusiveEx = { "png", "jpg" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsFalse(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile("blabla.txt"));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_ExtensionIsInIgnoreList()
         {
             string[] exclusiveEx = { "png", "jpg", "txt" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsTrue(checker.IgnoreFile("blabla.txt"));
+            Assert.True(checker.IgnoreFile("blabla.txt"));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_ExtensionIsInIgnoreList_Uppercase()
         {
             string[] exclusiveEx = { "PNG", "JPG", "TXT" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsTrue(checker.IgnoreFile("blabla.txt"));
+            Assert.True(checker.IgnoreFile("blabla.txt"));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestIgnoreFile_ExclusiveEx_FileHasNoExtension()
         {
             string[] exclusiveEx = { "PNG", "JPG", "TXT" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.IsFalse(checker.IgnoreFile("blabla"));
+            Assert.False(checker.IgnoreFile("blabla"));
         }
 
         private IgnoreOnExtensionsChecker CreateIgnoreOnExtensionsChecker(string[] exclusiveEx)
