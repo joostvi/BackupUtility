@@ -1,11 +1,11 @@
 ﻿using GenericClassLibrary.FileSystem;
-using ZCopy.Classes.NeedToCopy;
-using ZCopy.Classes.ExceptionHandling;
-using ZCopy.Classes.FileIgnore;
-using ZCopy.Classes.Readability;
-using ZCopy.Interfaces;
 using System;
 using System.IO;
+using ZCopy.Classes.ExceptionHandling;
+using ZCopy.Classes.FileIgnore;
+using ZCopy.Classes.NeedToCopy;
+using ZCopy.Classes.Readability;
+using ZCopy.Interfaces;
 
 namespace ZCopy.Classes
 {
@@ -20,7 +20,7 @@ namespace ZCopy.Classes
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
-        public delegate void ProcessInfoEventEventHandler(string theInfo);
+        public delegate void ProcessInfoEventEventHandler(object sender, ProcessInfoEventArgs eventArgs);
 
         public delegate bool ConfirmationRequest(string theInfo);
 
@@ -79,7 +79,7 @@ namespace ZCopy.Classes
 
         public void LogEvent(string message)
         {
-            ProcessInfoEvent?.Invoke(message);
+            ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs(message));
         }
 
         public void CopyFile(string aFile, string aTarget)
@@ -90,7 +90,7 @@ namespace ZCopy.Classes
             }
             catch (UnauthorizedAccessException ex)
             {
-               _exceptionHandler.HandleException("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")", ex);
+                _exceptionHandler.HandleException("Failed to copy " + aFile + " to " + aTarget + " failed(" + ex.Message + ")", ex);
             }
             catch (IOException ex)
             {
@@ -107,7 +107,7 @@ namespace ZCopy.Classes
 
             bool result = false;
             // Target folder does not exist Create it
-            ProcessInfoEvent?.Invoke("Create directory: " + theTarget);
+            ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs( "Create directory: " + theTarget));
             try
             {
                 _fileSystem.Directory.Create(theTarget);

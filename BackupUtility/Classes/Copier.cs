@@ -1,5 +1,5 @@
-﻿using System;
-using GenericClassLibrary.FileSystem;
+﻿using GenericClassLibrary.FileSystem;
+using System;
 using System.IO;
 using ZCopy.Interfaces;
 
@@ -13,7 +13,7 @@ namespace ZCopy.Classes
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
-        public delegate void ProcessInfoEventEventHandler(string theInfo);
+        public delegate void ProcessInfoEventEventHandler(object sender, ProcessInfoEventArgs theInfo);
 
         public Copier(Commands theCommands, ICommandHandler commandHandler)
         {
@@ -38,7 +38,7 @@ namespace ZCopy.Classes
 
             if (doCopy)
             {
-                ProcessInfoEvent?.Invoke("Copy File: " + aFile + " to " + aTarget);
+                ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs("Copy File: " + aFile + " to " + aTarget));
                 if (_commandHandler.CanReadFile(aFile))
                 {
                     // Try if we can copy the file.
@@ -99,7 +99,7 @@ namespace ZCopy.Classes
             if (System.Text.RegularExpressions.Regex.IsMatch(aFolder, "(Temporary Internet Files)$"))
                 return;
 
-            ProcessInfoEvent?.Invoke("Process directory: " + aFolder);
+            ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs("Process directory: " + aFolder));
 
             if (!CreateTargetDirectory(aFolder))
                 return;

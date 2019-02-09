@@ -52,9 +52,9 @@ namespace ZCopy
             return aKey.KeyChar == 'Y' || aKey.KeyChar == 'y';
         }
 
-        private static void ProcessInfo_ProcessInfoEvent(string theInfo)
+        private static void ProcessInfo_ProcessInfoEvent(object sender, ProcessInfoEventArgs eventArgs)
         {
-            Logger.Info(theInfo);
+            Logger.Info(eventArgs.Info);
         }
     }
 }
