@@ -17,6 +17,7 @@ namespace ZCopy.Classes
         private readonly IFileIgnoreChecker _fileIgnoreChecker;
         private readonly INeedToCopyChecker _needToCopyChecker;
         private readonly IFileSystem _fileSystem;
+        private readonly Commands _commands;
 
         public event ProcessInfoEventEventHandler ProcessInfoEvent;
 
@@ -28,14 +29,14 @@ namespace ZCopy.Classes
 
         public bool GetConfirmation(string aTarget)
         {
-            if (ConfirmationRequestHandler != null)
+            if (_commands.RequestConfirm &&  ConfirmationRequestHandler != null)
                 return ConfirmationRequestHandler.Invoke(aTarget);
             return true;
         }
 
         public CommandHandler(Commands commands)
         {
-            // _commands = commands
+            _commands = commands;
 
             _fileSystem = new FileSystem();
             if (commands.SkipCopyErrors)
