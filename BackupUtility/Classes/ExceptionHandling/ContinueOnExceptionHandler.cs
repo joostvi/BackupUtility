@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenericClassLibrary.Logging;
+using System;
 using ZCopy.Interfaces;
 
 namespace ZCopy.Classes.ExceptionHandling
@@ -16,7 +17,10 @@ namespace ZCopy.Classes.ExceptionHandling
         {
             string eventText = message;
             if ((eventText == "" || eventText == null))
+            {
                 eventText = ex.Message;
+            }
+            Logger.Error($"Exception (IGNORED): {ex.Message}");
             _eventLogger.LogEvent(eventText);
         }
     }
