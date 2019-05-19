@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using GenericClassLibrary.FileSystem;
+using GenericClassLibrary.Logging;
 using ZCopy.Interfaces;
 
 namespace ZCopy.Classes.NeedToCopy
@@ -19,12 +20,16 @@ namespace ZCopy.Classes.NeedToCopy
 
         public bool NeedToCopy(string aSource, string aTarget)
         {
+            Logger.Debug($"aSource={aSource}, aTarget={aTarget}");
+            Logger.Debug($"TypeOf(_fileSystem)={_fileSystem.GetType()} ");
             if (!_fileSystem.File.Exists(aTarget))
             {
+                Logger.Debug($"File {aTarget} not found! Need to copy.");
                 return true;
             }
             else if (_fileComparer.IsSameFile(new FileInfo(aSource), new FileInfo(aTarget)))
             {
+                Logger.Debug($"File {aTarget} equal to {aSource}! Need to copy.");
                 return false;
             }
             return _confirmationChecker.GetConfirmation(aTarget);

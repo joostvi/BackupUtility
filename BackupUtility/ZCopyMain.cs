@@ -18,6 +18,7 @@ namespace ZCopy
                     Logger.Info(Commands.Help());
                 else
                 {
+                    Logger.Level = theCommands.LogLevel;
                     Logger.Info("Copy started.");
                     CommandHandler CommandHandler = new CommandHandler(theCommands);
                     Copier Copier = new Copier(theCommands, CommandHandler);
@@ -25,8 +26,11 @@ namespace ZCopy
                     CommandHandler.ProcessInfoEvent += ProcessInfo_ProcessInfoEvent;
                     CommandHandler.ConfirmationRequestHandler += ConfirmationRequest;
                     Copier.Copy();
+                    Logger.Info("Copy done.");
                     if (theCommands.PauseWhenDone)
-                        Logger.Info("Copy done.");
+                    {
+                        Console.ReadKey();
+                    }                        
                 }
             }
             catch (System.IO.DirectoryNotFoundException ex)
@@ -41,8 +45,7 @@ namespace ZCopy
             {
                 Logger.Error("Failed with an unexpected exception.", ex);
             }
-
-            Console.ReadKey();
+           
         }
 
         private static bool ConfirmationRequest(string theInfo)

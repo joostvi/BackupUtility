@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GenericClassLibrary.Logging;
 using System.IO;
 using ZCopy.Interfaces;
 
@@ -21,9 +21,12 @@ namespace ZCopy.Classes
             }
             else
             {    // we have to look into the file details
-                // Cannot use creation time as this will be changed during backup.
-                TimeSpan diffResult = aFile.LastWriteTimeUtc.Subtract(aFile2.LastWriteTimeUtc);
-                if (diffResult.Ticks == 0 && aFile.Length == aFile2.Length && aFile.Name == aFile2.Name)
+                 // Cannot use creation time as this will be changed during backup.
+                 // TimeSpan diffResult = aFile.LastWriteTimeUtc.Subtract(aFile2.LastWriteTimeUtc);
+                //var hashCode1 = aFile.GetHashCode();
+                //var hashCode2 = aFile2.GetHashCode();
+                Logger.Debug($"FileComparer: length 1: {aFile.Length}, length 2: {aFile2.Length}, name 1: {aFile.Name}, name 2: {aFile2.Name}");
+                if (aFile.Length == aFile2.Length && aFile.Name == aFile2.Name)
                 {
                     sameFile = true;
                 }

@@ -1,4 +1,5 @@
 ﻿using GenericClassLibrary.FileSystem;
+using GenericClassLibrary.Logging;
 using System;
 using System.IO;
 using ZCopy.Classes.ExceptionHandling;
@@ -53,6 +54,7 @@ namespace ZCopy.Classes
             else
                 _fileIgnoreChecker = new IgnoreNoneChecker();
 
+            Logger.Debug($"commands.UpdatedOnly = {commands.UpdatedOnly}");
             if (commands.UpdatedOnly)
             {
                 _needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), this);
@@ -75,6 +77,7 @@ namespace ZCopy.Classes
 
         public bool NeedToCopy(string aSource, string aTarget)
         {
+            Logger.Debug($"CommandHandler: {_needToCopyChecker.GetType()}");
             return _needToCopyChecker.NeedToCopy(aSource, aTarget);
         }
 

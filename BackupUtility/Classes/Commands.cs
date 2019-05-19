@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using GenericClassLibrary.Logging;
 using System;
-using GenericClassLibrary.Logging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ZCopy.Classes
 {
@@ -52,14 +52,16 @@ namespace ZCopy.Classes
             ExclusiveExt = new string[1];
             // If not arguments supplied or help is requested set showHelp to true and stop processing.
             if (args == null || args.Length < 2 || args.Contains("/?"))
+            {
                 ShowHelp = true;
+            }
             else
             {
                 // Check other parms 
                 // 0 should be source
                 Logger.Info("args(0)=" + args[0]);
                 Source = PathFormatter.FormatPath(args[0]);
-                Logger.Info("source=" + Source);
+                Logger.Debug("source=" + Source);
                 // 1 should be targed
                 Target = FormatTarget(args[1]);
                 UpdatedOnly = args.Contains("/d", new CommandStringComparer());
@@ -68,7 +70,8 @@ namespace ZCopy.Classes
                 SkipCopyErrors = args.Contains("/x", new CommandStringComparer());
                 PauseWhenDone = args.Contains("/p", new CommandStringComparer());
                 ReadCheckFirst = args.Contains("/r", new CommandStringComparer());
-
+                LogLevel = GetLogLevel(args);
+                Logger.Info("Loglevel = " + LogLevel.ToString());
                 foreach (string aCmd in args)
                 {
                     if (aCmd.ToLower().StartsWith("/exclusiveext:"))
@@ -78,6 +81,41 @@ namespace ZCopy.Classes
                     }
                 }
             }
+        }
+
+        private static Dictionary<EnumLogLevel, string> LogLevels()
+        {
+            var levels = Enum.GetValues(typeof(EnumLogLevel));
+            Dictionary<EnumLogLevel, string> values = new Dictionary<EnumLogLevel, string>();
+            foreach (int level in levels)
+            {
+                EnumLogLevel value = (EnumLogLevel)level;
+                values.Add(value, value.ToString());
+            }
+            return values;
+        }
+
+        private static string LogLevelsToString()
+        {
+            var logLevelDict = LogLevels();
+            string valueList = "";
+            foreach (KeyValuePair<EnumLogLevel, string> value in logLevelDict)
+            {
+                valueList += $", {value.Value}";
+            }
+            return valueList.Substring(2);
+        }
+        private static EnumLogLevel GetLogLevel(string[] args)
+        {
+            var levels = LogLevels();
+            foreach (KeyValuePair<EnumLogLevel, string> value in levels)
+            {
+                if (args.Contains("/loglevel:" + value.Value, new CommandStringComparer()))
+                {
+                    return value.Key;
+                }
+            }
+            return EnumLogLevel.Info;
         }
 
         public static string Help()
@@ -105,13 +143,14 @@ namespace ZCopy.Classes
             aStr += "\r\n/? show this info file. When this parameter is given all others will be ignored.";
             aStr += "\r\n/p Pause when copy is ready.";
             aStr += "\r\n/r First check if we can read the file.";
+            aStr += "\r\n/loglevel:{value} Level of details logged. Default info. Possible values: " + LogLevelsToString();
             aStr += "\r\n\r\nSwitches may be in any order as long as they are not used as first or second parameter.";
             aStr += "\r\n\r\nExample:";
             aStr += "\r\n\r\n" + @"zcopy c:\tmp\ d:\tmp /d /y /s /x /exclusiveExt:bak+csv";
             return aStr;
         }
 
-        private Commands(bool showHelp, string source, string target, bool updatedOnly, bool requestConfirm, bool subFoldersAlso, bool skipCopyErrors, string[] exclusiveExt, bool pauseWhenDone, bool doReadCheckFirst)
+        private Commands(bool showHelp, string source, string target, bool updatedOnly, bool requestConfirm, bool subFoldersAlso, bool skipCopyErrors, string[] exclusiveExt, bool pauseWhenDone, bool doReadCheckFirst, EnumLogLevel logLevel)
         {
             ShowHelp = showHelp;
             Source = source;
@@ -123,6 +162,7 @@ namespace ZCopy.Classes
             ExclusiveExt = exclusiveExt;
             PauseWhenDone = pauseWhenDone;
             ReadCheckFirst = doReadCheckFirst;
+            LogLevel = logLevel;
         }
 
         public bool ShowHelp { get; }
@@ -145,9 +185,11 @@ namespace ZCopy.Classes
 
         public bool ReadCheckFirst { get; }
 
+        public EnumLogLevel LogLevel { get; }
+
         public Commands Clone()
         {
-            return new Commands(this.ShowHelp, this.Source, this.Target, this.UpdatedOnly, this.RequestConfirm, this.SubFoldersAlso, this.SkipCopyErrors, this.ExclusiveExt, this.PauseWhenDone, this.ReadCheckFirst);
+            return new Commands(this.ShowHelp, this.Source, this.Target, this.UpdatedOnly, this.RequestConfirm, this.SubFoldersAlso, this.SkipCopyErrors, this.ExclusiveExt, this.PauseWhenDone, this.ReadCheckFirst, this.LogLevel);
         }
     }
 }

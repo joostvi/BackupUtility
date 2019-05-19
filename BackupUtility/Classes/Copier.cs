@@ -1,4 +1,5 @@
 ﻿using GenericClassLibrary.FileSystem;
+using GenericClassLibrary.Logging;
 using System;
 using System.IO;
 using ZCopy.Interfaces;
@@ -23,18 +24,18 @@ namespace ZCopy.Classes
             _commandHandler = commandHandler;
         }
 
-        private void CopyFile(string aFile)
+        private bool CopyFile(string aFile)
         {
             // Just an input check
             if (aFile == null || aFile == "")
-                return;
+                return false;
 
             if (_commandHandler.IgnoreFile(aFile))
-                return;
+                return false;
 
             string aTarget = aFile.Replace(_commands.Source, _commands.Target);
 
-            bool doCopy = _commandHandler.NeedToCopy(_commands.Source, aTarget);
+            bool doCopy = _commandHandler.NeedToCopy(aFile, aTarget);
 
             if (doCopy)
             {
@@ -45,6 +46,7 @@ namespace ZCopy.Classes
                     _commandHandler.CopyFile(aFile, aTarget);
                 }
             }
+            return doCopy;
         }
 
         private bool FolderExists(string aFolder)
@@ -105,6 +107,7 @@ namespace ZCopy.Classes
                 return;
 
             string[] theFiles;
+            int nrOfCopiedFiles = 0;
 
             // Now copy files
             try
@@ -112,13 +115,18 @@ namespace ZCopy.Classes
                 theFiles = _fileSystem.Directory.GetFiles(aFolder);
                 foreach (string aFile in theFiles)
                 {
-                    CopyFile(aFile);
+                    if(CopyFile(aFile))
+                    {
+                        nrOfCopiedFiles += 1;
+                    }
                 }
+                Logger.Info($"Copied {nrOfCopiedFiles} of {theFiles.Length} in folder {aFolder}");
             }
             catch (UnauthorizedAccessException ex)
             {
                 _commandHandler.HandleException("Could not read directories of folder: " + aFolder + "(" + ex.Message + ")", ex);
             }
+            
             ProcessSubfolders(aFolder);
         }
 
