@@ -1,7 +1,9 @@
-﻿namespace ZCopy.Interfaces
+﻿using ZCopy.Classes;
+
+namespace ZCopy.Interfaces
 {
     public interface INeedToCopyChecker
     {
-        bool NeedToCopy(string aSource, string aTarget);
+        bool NeedToCopy(FolderMap baseMap, string aSource, string aTarget);
     }
 }

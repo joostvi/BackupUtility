@@ -2,6 +2,7 @@
 using GenericClassLibrary.Logging;
 using System;
 using System.IO;
+using System.Linq;
 using ZCopy.Interfaces;
 
 namespace ZCopy.Classes
@@ -24,18 +25,17 @@ namespace ZCopy.Classes
             _commandHandler = commandHandler;
         }
 
-        private bool CopyFile(string aFile)
+        private bool CopyFile(FolderMap baseFolder, string aFile)
         {
             // Just an input check
             if (aFile == null || aFile == "")
                 return false;
 
-            if (_commandHandler.IgnoreFile(aFile))
+            if (_commandHandler.IgnoreFile(baseFolder, aFile))
                 return false;
+            string aTarget = aFile.Replace(baseFolder.Source, baseFolder.Target);
 
-            string aTarget = aFile.Replace(_commands.Source, _commands.Target);
-
-            bool doCopy = _commandHandler.NeedToCopy(aFile, aTarget);
+            bool doCopy = _commandHandler.NeedToCopy(baseFolder, aFile, aTarget);
 
             if (doCopy)
             {
@@ -61,20 +61,20 @@ namespace ZCopy.Classes
             return false;
         }
 
-        private bool CreateTargetDirectory(string aFolder)
+        private bool CreateTargetDirectory(FolderMap baseFolder, string aFolder)
         {
             // OK copy files in this directory.
             // First check if target folder exists.
-            string theTarget = aFolder.Replace(_commands.Source, _commands.Target);
+            string theTarget = aFolder.Replace(baseFolder.Source, baseFolder.Target);
             // if already exists we don't need to create it
             return _commandHandler.CreateDirectory(theTarget);
         }
 
-        private void ProcessSubfolders(string aFolder)
+        private void ProcessSubfolders(FolderMap baseFolder, string aFolder)
         {
 
             // When we want the subfolders also we need to loop thru the sub directories.
-            if (_commands.SubFoldersAlso)
+            if (baseFolder.SubFoldersAlso)
             {
                 string[] directories = new string[1];
                 try
@@ -87,23 +87,22 @@ namespace ZCopy.Classes
                 }
                 foreach (var aDirectory in directories)
                 {
-                    ThisDirectory(aDirectory);
+                    ThisDirectory(baseFolder, aDirectory);
                 }
             }
         }
 
-        private void ThisDirectory(string aFolder)
+        private void ThisDirectory(FolderMap baseFolder, string aFolder)
         {
             if (!FolderExists(aFolder))
                 return;
 
-            // TODO make exclusion of folders optional
             if (System.Text.RegularExpressions.Regex.IsMatch(aFolder, "(Temporary Internet Files)$"))
                 return;
 
             ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs("Process directory: " + aFolder));
 
-            if (!CreateTargetDirectory(aFolder))
+            if (!CreateTargetDirectory(baseFolder, aFolder))
                 return;
 
             string[] theFiles;
@@ -115,7 +114,7 @@ namespace ZCopy.Classes
                 theFiles = _fileSystem.Directory.GetFiles(aFolder);
                 foreach (string aFile in theFiles)
                 {
-                    if(CopyFile(aFile))
+                    if(CopyFile(baseFolder, aFile))
                     {
                         nrOfCopiedFiles += 1;
                     }
@@ -127,12 +126,15 @@ namespace ZCopy.Classes
                 _commandHandler.HandleException("Could not read directories of folder: " + aFolder + "(" + ex.Message + ")", ex);
             }
             
-            ProcessSubfolders(aFolder);
+            ProcessSubfolders(baseFolder, aFolder);
         }
 
         public void Copy()
         {
-            ThisDirectory(_commands.Source);
+            foreach(FolderMap folder in _commands.Folders)
+            {
+                ThisDirectory(folder, folder.Source);
+            }            
         }
     }
 }

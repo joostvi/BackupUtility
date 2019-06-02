@@ -17,7 +17,7 @@ namespace ZCopyUnitTester
             FileSystemMock fileSystem = new FileSystemMock(file);
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, null);
             
-            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
         }
 
         [Fact()]
@@ -30,7 +30,7 @@ namespace ZCopyUnitTester
             
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, confirmation.Object);
 
-            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
             Assert.Equal(1, confirmation.Invocations.Count);
         }
 
@@ -44,7 +44,7 @@ namespace ZCopyUnitTester
 
             NeedToCopyWithConfirmation needToCopyUpdatedOnlyChecker = new NeedToCopyWithConfirmation(fileSystem, confirmation.Object);
 
-            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
             Assert.Equal(1, confirmation.Invocations.Count);
         }
     }

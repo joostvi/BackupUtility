@@ -4,7 +4,7 @@ namespace ZCopy.Classes.FileIgnore
 {
     public class IgnoreNoneChecker : IFileIgnoreChecker
     {
-        public bool IgnoreFile(string file)
+        public bool IgnoreFile(FolderMap baseMap, string file)
         {
             return false;
         }

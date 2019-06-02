@@ -1,7 +1,9 @@
-﻿namespace ZCopy.Interfaces
+﻿using ZCopy.Classes;
+
+namespace ZCopy.Interfaces
 {
     public interface IFileIgnoreChecker
     {
-        bool IgnoreFile(string file);
+        bool IgnoreFile(FolderMap baseMap, string file);
     }
 }

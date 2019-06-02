@@ -18,7 +18,7 @@ namespace ZCopyUnitTester
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(null, fileSystem, null);
 
 
-            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
         }
 
         [Fact()]
@@ -32,7 +32,7 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
-            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
             Assert.Equal(1, fileComparere.Invocations.Count);
             Assert.Equal(1, confirmation.Invocations.Count);
         }
@@ -48,7 +48,7 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
 
-            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.False(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
             Assert.Equal(0, confirmation.Invocations.Count);
             Assert.Equal(1, fileComparere.Invocations.Count);
         }
@@ -64,7 +64,7 @@ namespace ZCopyUnitTester
 
             NeedToCopyUpdatedOnlyChecker needToCopyUpdatedOnlyChecker = new NeedToCopyUpdatedOnlyChecker(fileComparere.Object, fileSystem, confirmation.Object);
             
-            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy("dummy", "dummy"));
+            Assert.True(needToCopyUpdatedOnlyChecker.NeedToCopy(null, "dummy", "dummy"));
             Assert.Equal(1, confirmation.Invocations.Count);
             Assert.Equal(1, fileComparere.Invocations.Count);
         }

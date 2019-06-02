@@ -14,7 +14,7 @@ namespace ZCopy.Classes.NeedToCopy
             _fileSystem = fileSystem;
             _confirmationChecker = confirmationChecker;
         }
-        public bool NeedToCopy(string aSource, string aTarget)
+        public bool NeedToCopy(FolderMap baseMap, string aSource, string aTarget)
         {
             if (!_fileSystem.File.Exists(aTarget))
             {

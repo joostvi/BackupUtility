@@ -62,6 +62,7 @@ namespace ZCopy.Classes
             }
             return valueList.Substring(2);
         }
+
         private static EnumLogLevel GetLogLevel(string[] args)
         {
             var levels = LogLevels();
@@ -109,49 +110,51 @@ namespace ZCopy.Classes
 
         public static Commands ParseArgs(string[] args)
         {
-            bool ShowHelp = false;
-            string Source = "";
-            bool UpdatedOnly = false;
-            bool RequestConfirm = true;
-            bool SubFoldersAlso = false;
-            bool SkipCopyErrors = false;
-            bool PauseWhenDone = false;
-            string[] ExclusiveExt = new string[1];
-            bool ReadCheckFirst = false;
-            string Target = string.Empty;
-            EnumLogLevel LogLevel = EnumLogLevel.None;
+            bool showHelp = false;
+            string source = "";
+            bool updatedOnly = false;
+            bool requestConfirm = true;
+            bool subFoldersAlso = false;
+            bool skipCopyErrors = false;
+            bool pauseWhenDone = false;
+            string[] exclusiveExt = new string[1];
+            bool readCheckFirst = false;
+            string target = string.Empty;
+            EnumLogLevel logLevel = EnumLogLevel.None;
             // If not arguments supplied or help is requested set showHelp to true and stop processing.
             if (args == null || args.Length < 2 || args.Contains("/?"))
             {
-                ShowHelp = true;
+                showHelp = true;
             }
             else
             {
                 // Check other parms 
                 // 0 should be source
                 Logger.Info("args(0)=" + args[0]);
-                Source = PathFormatter.FormatPath(args[0]);
-                Logger.Debug("source=" + Source);
+                source = PathFormatter.FormatPath(args[0]);
+                Logger.Debug("source=" + source);
                 // 1 should be targed
-                Target = FormatTarget(args[1]);
-                UpdatedOnly = args.Contains("/d", new CommandStringComparer());
-                RequestConfirm = !args.Contains("/y", new CommandStringComparer());
-                SubFoldersAlso = args.Contains("/s", new CommandStringComparer());
-                SkipCopyErrors = args.Contains("/x", new CommandStringComparer());
-                PauseWhenDone = args.Contains("/p", new CommandStringComparer());
-                ReadCheckFirst = args.Contains("/r", new CommandStringComparer());
-                LogLevel = GetLogLevel(args);
-                Logger.Info("Loglevel = " + LogLevel.ToString());
+                target = FormatTarget(args[1]);
+                updatedOnly = args.Contains("/d", new CommandStringComparer());
+                requestConfirm = !args.Contains("/y", new CommandStringComparer());
+                subFoldersAlso = args.Contains("/s", new CommandStringComparer());
+                skipCopyErrors = args.Contains("/x", new CommandStringComparer());
+                pauseWhenDone = args.Contains("/p", new CommandStringComparer());
+                readCheckFirst = args.Contains("/r", new CommandStringComparer());
+                logLevel = GetLogLevel(args);
+                Logger.Info("Loglevel = " + logLevel.ToString());
                 foreach (string aCmd in args)
                 {
                     if (aCmd.ToLower().StartsWith("/exclusiveext:"))
                     {
-                        ExclusiveExt = aCmd.Split(':')[0].Split('+'); // string.Split(aCmd, ":")(1), "+");
+                        exclusiveExt = aCmd.Split(':')[0].Split('+');
                         break;
                     }
                 }
             }
-            return new Commands(ShowHelp, Source, Target, UpdatedOnly, RequestConfirm, SubFoldersAlso, SkipCopyErrors, ExclusiveExt, PauseWhenDone, ReadCheckFirst, LogLevel);
+            FolderMap folderMap = new FolderMap(source, target, updatedOnly, subFoldersAlso, exclusiveExt);
+            List<FolderMap> folderMaps = new List<FolderMap>() { folderMap };
+            return new Commands(showHelp, folderMaps, requestConfirm, skipCopyErrors, pauseWhenDone, readCheckFirst, logLevel);
         }
     }
 }

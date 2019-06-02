@@ -26,7 +26,7 @@ namespace ZCopy.Classes.FileIgnore
             }
         }
 
-        public bool IgnoreFile(string file)
+        public bool IgnoreFile(FolderMap baseMap, string file)
         {
             try
             {

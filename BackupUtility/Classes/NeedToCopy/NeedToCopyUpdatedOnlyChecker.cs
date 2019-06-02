@@ -18,7 +18,7 @@ namespace ZCopy.Classes.NeedToCopy
             _fileSystem = fileSystem;
         }
 
-        public bool NeedToCopy(string aSource, string aTarget)
+        public bool NeedToCopy(FolderMap baseMap, string aSource, string aTarget)
         {
             Logger.Debug($"aSource={aSource}, aTarget={aTarget}");
             Logger.Debug($"TypeOf(_fileSystem)={_fileSystem.GetType()} ");

@@ -84,6 +84,7 @@
     <Compile Include="Classes\FileComparer.cs" />
     <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.cs" />
     <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.cs" />
+    <Compile Include="Classes\FolderMap.cs" />
     <Compile Include="Classes\ProcesInfoEventArgs.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />
     <Compile Include="Classes\NeedToCopy\NeedToCopyWithConfirmation.cs" />

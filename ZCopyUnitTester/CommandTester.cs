@@ -1,4 +1,5 @@
 ﻿using GenericClassLibrary.Logging;
+using System.Linq;
 using Xunit;
 using ZCopy.Classes;
 
@@ -17,7 +18,7 @@ namespace ZCopyUnitTester
             args[0] = input;
             args[1] = "somepath";
 
-            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).Source);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).Folders.First().Source);
 
         }
 
@@ -65,7 +66,7 @@ namespace ZCopyUnitTester
                 args[1] = "somepath";
             }
 
-            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).UpdatedOnly);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).Folders.First().UpdatedOnly);
         }
 
         [Theory]

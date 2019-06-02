@@ -15,7 +15,7 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = null;
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.False(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile(null, "blabla.txt"));
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = new string[0];
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.False(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile(null, "blabla.txt"));
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = { "png", "jpg" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.False(checker.IgnoreFile("blabla.txt"));
+            Assert.False(checker.IgnoreFile(null, "blabla.txt"));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = { "png", "jpg", "txt" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.True(checker.IgnoreFile("blabla.txt"));
+            Assert.True(checker.IgnoreFile(null, "blabla.txt"));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = { "PNG", "JPG", "TXT" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.True(checker.IgnoreFile("blabla.txt"));
+            Assert.True(checker.IgnoreFile(null, "blabla.txt"));
         }
 
         [Fact]
@@ -55,12 +55,11 @@ namespace ZCopyUnitTester
         {
             string[] exclusiveEx = { "PNG", "JPG", "TXT" };
             IgnoreOnExtensionsChecker checker = CreateIgnoreOnExtensionsChecker(exclusiveEx);
-            Assert.False(checker.IgnoreFile("blabla"));
+            Assert.False(checker.IgnoreFile(null, "blabla"));
         }
 
         private IgnoreOnExtensionsChecker CreateIgnoreOnExtensionsChecker(string[] exclusiveEx)
         {
-            IFile file = new FileMock(new DirectoryMock());
             IFileSystem fileSystem = new FileSystemMock();
             IExceptionHandler exceptionHandler = MockBuilder.CreateIExceptionHandler().Object;
             return new IgnoreOnExtensionsChecker(exclusiveEx, fileSystem, exceptionHandler);

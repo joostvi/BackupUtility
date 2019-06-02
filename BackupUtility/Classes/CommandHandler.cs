@@ -15,8 +15,6 @@ namespace ZCopy.Classes
 
         private readonly IFileReadableChecker _fileReadableChecker;
         private readonly IExceptionHandler _exceptionHandler;
-        private readonly IFileIgnoreChecker _fileIgnoreChecker;
-        private readonly INeedToCopyChecker _needToCopyChecker;
         private readonly IFileSystem _fileSystem;
         private readonly Commands _commands;
 
@@ -30,7 +28,7 @@ namespace ZCopy.Classes
 
         public bool GetConfirmation(string aTarget)
         {
-            if (_commands.RequestConfirm &&  ConfirmationRequestHandler != null)
+            if (_commands.RequestConfirm && ConfirmationRequestHandler != null)
                 return ConfirmationRequestHandler.Invoke(aTarget);
             return true;
         }
@@ -38,7 +36,6 @@ namespace ZCopy.Classes
         public CommandHandler(Commands commands)
         {
             _commands = commands;
-
             _fileSystem = new FileSystem();
             if (commands.SkipCopyErrors)
                 _exceptionHandler = new ContinueOnExceptionHandler(this);
@@ -49,20 +46,6 @@ namespace ZCopy.Classes
                 _fileReadableChecker = new FullReadChecker(_exceptionHandler);
             else
                 _fileReadableChecker = new BasicReadChecker();
-            if (commands.ExclusiveExt.Length > 0)
-                _fileIgnoreChecker = new IgnoreOnExtensionsChecker(commands.ExclusiveExt, _fileSystem, _exceptionHandler);
-            else
-                _fileIgnoreChecker = new IgnoreNoneChecker();
-
-            Logger.Debug($"commands.UpdatedOnly = {commands.UpdatedOnly}");
-            if (commands.UpdatedOnly)
-            {
-                _needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), this);
-            }
-            else
-            {
-                _needToCopyChecker = new NeedToCopyWithConfirmation(new FileSystem(), this);
-            }
         }
 
         public bool CanReadFile(string aFile)
@@ -70,15 +53,29 @@ namespace ZCopy.Classes
             return _fileReadableChecker.CanReadFile(aFile);
         }
 
-        public bool IgnoreFile(string file)
+        public bool IgnoreFile(FolderMap baseMap, string file)
         {
-            return _fileIgnoreChecker.IgnoreFile(file);
+            IFileIgnoreChecker fileIgnoreChecker;
+            if (baseMap.ExclusiveExt.Length > 0)
+                fileIgnoreChecker = new IgnoreOnExtensionsChecker(baseMap.ExclusiveExt, _fileSystem, _exceptionHandler);
+            else
+                fileIgnoreChecker = new IgnoreNoneChecker();
+            return fileIgnoreChecker.IgnoreFile(baseMap, file);
         }
 
-        public bool NeedToCopy(string aSource, string aTarget)
+        public bool NeedToCopy(FolderMap baseMap, string aSource, string aTarget)
         {
-            Logger.Debug($"CommandHandler: {_needToCopyChecker.GetType()}");
-            return _needToCopyChecker.NeedToCopy(aSource, aTarget);
+            Logger.Debug($"baseMap.UpdatedOnly = {baseMap.UpdatedOnly}");
+            INeedToCopyChecker needToCopyChecker;
+            if (baseMap.UpdatedOnly)
+            {
+                needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), this);
+            }
+            else
+            {
+                needToCopyChecker = new NeedToCopyWithConfirmation(new FileSystem(), this);
+            }
+            return needToCopyChecker.NeedToCopy(baseMap, aSource, aTarget);
         }
 
         public void LogEvent(string message)
@@ -111,7 +108,7 @@ namespace ZCopy.Classes
 
             bool result = false;
             // Target folder does not exist Create it
-            ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs( "Create directory: " + theTarget));
+            ProcessInfoEvent?.Invoke(this, new ProcessInfoEventArgs("Create directory: " + theTarget));
             try
             {
                 _fileSystem.Directory.Create(theTarget);
