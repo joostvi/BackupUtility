@@ -75,6 +75,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CommandLineArgumentParser.cs" />
     <Compile Include="Classes\Commands.cs" />
     <Compile Include="Classes\Copier.cs" />
     <Compile Include="Classes\CommandHandler.cs" />

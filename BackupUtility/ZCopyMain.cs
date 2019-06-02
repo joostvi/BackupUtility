@@ -13,9 +13,10 @@ namespace ZCopy
             {
                 Logger.Level = EnumLogLevel.Info;
                 Logger.AddLogger(new ConsoleLogger());
-                Commands theCommands = new Commands(args);
+
+                Commands theCommands = CommandLineArgumentParser.ParseArgs(args);
                 if (theCommands.ShowHelp)
-                    Logger.Info(Commands.Help());
+                    Logger.Info(CommandLineArgumentParser.Help());
                 else
                 {
                     Logger.Level = theCommands.LogLevel;

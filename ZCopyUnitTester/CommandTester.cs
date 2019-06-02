@@ -17,7 +17,7 @@ namespace ZCopyUnitTester
             args[0] = input;
             args[1] = "somepath";
 
-            Assert.Equal(expected, new Commands(args).Source);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).Source);
 
         }
 
@@ -41,7 +41,7 @@ namespace ZCopyUnitTester
                 args[1] = "somepath";
             }         
 
-            Assert.Equal(expected, new Commands(args).RequestConfirm);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).RequestConfirm);
 
         }
 
@@ -65,7 +65,7 @@ namespace ZCopyUnitTester
                 args[1] = "somepath";
             }
 
-            Assert.Equal(expected, new Commands(args).UpdatedOnly);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).UpdatedOnly);
         }
 
         [Theory]
@@ -89,7 +89,7 @@ namespace ZCopyUnitTester
                 args[1] = "somepath";
             }
 
-            Assert.Equal(expected, new Commands(args).LogLevel);
+            Assert.Equal(expected, CommandLineArgumentParser.ParseArgs(args).LogLevel);
 
         }
     }
