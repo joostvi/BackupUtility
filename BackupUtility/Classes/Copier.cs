@@ -2,7 +2,6 @@
 using GenericClassLibrary.Logging;
 using System;
 using System.IO;
-using System.Linq;
 using ZCopy.Interfaces;
 
 namespace ZCopy.Classes

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+<<<<<<< HEAD
+    <PackageReference Include="Moq" Version="4.13.0" />
+=======
+    <PackageReference Include="Moq" Version="4.11.0" />
+>>>>>>> first attempt - Create template file
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BackupUtility\ZCopy.csproj" />
+    <ProjectReference Include="..\generic\GenericClassLibraryTests\GenericClassLibraryTests.csproj" />
+    <ProjectReference Include="..\generic\GenericClassLibrary\GenericClassLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

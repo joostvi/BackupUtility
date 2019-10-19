@@ -1,0 +1,304 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/YamlDotNet.dll": {}
+        }
+      },
+      "GenericClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        }
+      },
+      "GenericWPFLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.7.2",
+        "compile": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        }
+      },
+      "ZCopy/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "GenericClassLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZCopy.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZCopy.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win": {
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/YamlDotNet.dll": {}
+        }
+      },
+      "GenericClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        }
+      },
+      "GenericWPFLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.7.2",
+        "compile": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        }
+      },
+      "ZCopy/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "GenericClassLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZCopy.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZCopy.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x64": {
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/YamlDotNet.dll": {}
+        }
+      },
+      "GenericClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        }
+      },
+      "GenericWPFLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.7.2",
+        "compile": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        }
+      },
+      "ZCopy/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "GenericClassLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZCopy.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZCopy.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x86": {
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/YamlDotNet.dll": {}
+        }
+      },
+      "GenericClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericClassLibrary.dll": {}
+        }
+      },
+      "GenericWPFLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.7.2",
+        "compile": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericWPFLibrary.dll": {}
+        }
+      },
+      "ZCopy/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "GenericClassLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZCopy.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZCopy.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "YamlDotNet/8.0.0": {
+      "sha512": "Ib8lKt7TlODREDFLOWef0OmxChsQlTsRSGGx7A6YH8d7Y+YrMg8Z/RneW5WAnDsfygg/Ao2r2ND1UNe0LLPMFw==",
+      "type": "package",
+      "path": "yamldotnet/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net20/YamlDotNet.dll",
+        "lib/net20/YamlDotNet.xml",
+        "lib/net35-client/YamlDotNet.dll",
+        "lib/net35-client/YamlDotNet.xml",
+        "lib/net35/YamlDotNet.dll",
+        "lib/net35/YamlDotNet.xml",
+        "lib/net45/YamlDotNet.dll",
+        "lib/net45/YamlDotNet.xml",
+        "lib/netstandard1.3/YamlDotNet.dll",
+        "lib/netstandard1.3/YamlDotNet.xml",
+        "lib/netstandard2.1/YamlDotNet.dll",
+        "lib/netstandard2.1/YamlDotNet.xml",
+        "yamldotnet.8.0.0.nupkg.sha512",
+        "yamldotnet.nuspec"
+      ]
+    },
+    "GenericClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../generic/GenericClassLibrary/GenericClassLibrary.csproj",
+      "msbuildProject": "../generic/GenericClassLibrary/GenericClassLibrary.csproj"
+    },
+    "GenericWPFLibrary/1.0.0": {
+      "type": "project",
+      "path": "../generic/GenericWPFLibrary/GenericWPFLibrary.csproj",
+      "msbuildProject": "../generic/GenericWPFLibrary/GenericWPFLibrary.csproj"
+    },
+    "ZCopy/1.0.0": {
+      "type": "project",
+      "path": "../BackupUtility/ZCopy.csproj",
+      "msbuildProject": "../BackupUtility/ZCopy.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "GenericClassLibrary >= 1.0.0",
+      "GenericWPFLibrary >= 1.0.0",
+      "YamlDotNet >= 8.0.0",
+      "ZCopy >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Joost\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyTemplateBuilder\\ZCopyTemplateBuilder.csproj",
+      "projectName": "ZCopyTemplateBuilder",
+      "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyTemplateBuilder\\ZCopyTemplateBuilder.csproj",
+      "packagesPath": "C:\\Users\\Joost\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\ZCopyTemplateBuilder\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\Joost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj"
+            },
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj"
+            },
+            "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericWPFLibrary\\GenericWPFLibrary.csproj": {
+              "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericWPFLibrary\\GenericWPFLibrary.csproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "dependencies": {
+          "YamlDotNet": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

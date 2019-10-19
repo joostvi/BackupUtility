@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZCopyTemplateBuilder", "ZCopyTemplateBuilder\ZCopyTemplateBuilder.csproj", "{29C58558-C1AC-421C-843D-A42A66B97C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericWPFLibrary", "generic\GenericWPFLibrary\GenericWPFLibrary.csproj", "{60E03DF4-B096-455B-A179-BD2135526A6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{088B65B7-4744-4187-80DD-BC52BB03B790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{088B65B7-4744-4187-80DD-BC52BB03B790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{088B65B7-4744-4187-80DD-BC52BB03B790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C58558-C1AC-421C-843D-A42A66B97C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C58558-C1AC-421C-843D-A42A66B97C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C58558-C1AC-421C-843D-A42A66B97C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C58558-C1AC-421C-843D-A42A66B97C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E03DF4-B096-455B-A179-BD2135526A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E03DF4-B096-455B-A179-BD2135526A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E03DF4-B096-455B-A179-BD2135526A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E03DF4-B096-455B-A179-BD2135526A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BBCDF61A-E091-4507-80B1-2A5A4D4AABB4} = {CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}
 		{088B65B7-4744-4187-80DD-BC52BB03B790} = {CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}
+		{60E03DF4-B096-455B-A179-BD2135526A6E} = {CE0DFA4F-A366-4B72-BBA8-0FD8A6E198AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE48D81D-B0E0-4A1F-BEDC-EF618FA4E1D0}
