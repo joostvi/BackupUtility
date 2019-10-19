@@ -167,9 +167,6 @@
       },
       "ZCopy/1.0.0": {
         "type": "project",
-        "dependencies": {
-          "GenericClassLibrary": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/ZCopy.dll": {}
         },

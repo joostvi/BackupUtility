@@ -9,16 +9,7 @@
       "restore": {
         "projectUniqueName": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj",
         "projectName": "ZCopy",
-        "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj",
-        "frameworks": {
-          "net461": {
-            "projectReferences": {
-              "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibrary\\GenericClassLibrary.csproj"
-              }
-            }
-          }
-        }
+        "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj"
       },
       "frameworks": {
         "net461": {}
