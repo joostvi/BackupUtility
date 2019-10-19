@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.1": {
-      "Castle.Core/4.3.1": {
+      "Castle.Core/4.4.0": {
         "type": "package",
         "frameworkAssemblies": [
           "System.Configuration"
@@ -14,10 +14,10 @@
           "lib/net45/Castle.Core.dll": {}
         }
       },
-      "Moq/4.10.1": {
+      "Moq/4.13.0": {
         "type": "package",
         "dependencies": {
-          "Castle.Core": "4.3.1",
+          "Castle.Core": "4.4.0",
           "System.Threading.Tasks.Extensions": "4.5.1"
         },
         "compile": {
@@ -122,9 +122,21 @@
           "build/net20/xunit.runner.visualstudio.props": {}
         }
       },
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/YamlDotNet.dll": {}
+        }
+      },
       "GenericClassLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
         "compile": {
           "bin/placeholder/GenericClassLibrary.dll": {}
         },
@@ -137,7 +149,7 @@
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
           "GenericClassLibrary": "1.0.0",
-          "Moq": "4.10.1",
+          "Moq": "4.13.0",
           "xunit": "2.4.1",
           "xunit.abstractions": "2.0.3",
           "xunit.analyzers": "0.10.0",
@@ -155,6 +167,7 @@
       },
       "ZCopy/1.0.0": {
         "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
           "GenericClassLibrary": "1.0.0"
         },
@@ -168,17 +181,17 @@
     }
   },
   "libraries": {
-    "Castle.Core/4.3.1": {
-      "sha512": "Dx90A7xzdyYiaq1aMn3QmblpFAaVhDCiZkSblt96pf8QopOjLxCcs5ufKJA1zyg2L+Hxjnzx3JNrmfK8ZMRHvA==",
+    "Castle.Core/4.4.0": {
+      "sha512": "b5rRL5zeaau1y/5hIbI+6mGw3cwun16YjkHZnV9RRT5UyUIFsgLmNXJ0YnIN9p8Hw7K7AbG1q1UclQVU3DinAQ==",
       "type": "package",
-      "path": "castle.core/4.3.1",
+      "path": "castle.core/4.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ASL - Apache Software Foundation License.txt",
         "CHANGELOG.md",
         "LICENSE",
-        "castle.core.4.3.1.nupkg.sha512",
+        "castle.core.4.4.0.nupkg.sha512",
         "castle.core.nuspec",
         "lib/net35/Castle.Core.dll",
         "lib/net35/Castle.Core.xml",
@@ -193,20 +206,18 @@
         "readme.txt"
       ]
     },
-    "Moq/4.10.1": {
-      "sha512": "bhIH9jS8Fuy5r+p7+y0M5wRbJkbhPbsacOAFd7hWwjV8/e71zZOfg33FVF3R7H/qOTV1vErIg+zSnGlzJn1sPA==",
+    "Moq/4.13.0": {
+      "sha512": "htNcWChBOSLynXM3b4ZZecwbF4Li/sAxpVwmPO96hhP3vssjKHJyMm6KUNKjXcGs1FIZD5gOrBk62s9q8K7AuQ==",
       "type": "package",
-      "path": "moq/4.10.1",
+      "path": "moq/4.13.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Moq.dll",
-        "lib/net45/Moq.pdb",
         "lib/net45/Moq.xml",
-        "lib/netstandard1.3/Moq.dll",
-        "lib/netstandard1.3/Moq.pdb",
-        "lib/netstandard1.3/Moq.xml",
-        "moq.4.10.1.nupkg.sha512",
+        "lib/netstandard2.0/Moq.dll",
+        "lib/netstandard2.0/Moq.xml",
+        "moq.4.13.0.nupkg.sha512",
         "moq.nuspec"
       ]
     },
@@ -410,6 +421,30 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
+    "YamlDotNet/8.0.0": {
+      "sha512": "Ib8lKt7TlODREDFLOWef0OmxChsQlTsRSGGx7A6YH8d7Y+YrMg8Z/RneW5WAnDsfygg/Ao2r2ND1UNe0LLPMFw==",
+      "type": "package",
+      "path": "yamldotnet/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net20/YamlDotNet.dll",
+        "lib/net20/YamlDotNet.xml",
+        "lib/net35-client/YamlDotNet.dll",
+        "lib/net35-client/YamlDotNet.xml",
+        "lib/net35/YamlDotNet.dll",
+        "lib/net35/YamlDotNet.xml",
+        "lib/net45/YamlDotNet.dll",
+        "lib/net45/YamlDotNet.xml",
+        "lib/netstandard1.3/YamlDotNet.dll",
+        "lib/netstandard1.3/YamlDotNet.xml",
+        "lib/netstandard2.1/YamlDotNet.dll",
+        "lib/netstandard2.1/YamlDotNet.xml",
+        "yamldotnet.8.0.0.nupkg.sha512",
+        "yamldotnet.nuspec"
+      ]
+    },
     "GenericClassLibrary/1.0.0": {
       "type": "project",
       "path": "../generic/GenericClassLibrary/GenericClassLibrary.csproj",
@@ -430,7 +465,7 @@
     ".NETFramework,Version=v4.6.1": [
       "GenericClassLibrary >= 1.0.0",
       "GenericClassLibraryTests >= 1.0.0",
-      "Moq >= 4.10.1",
+      "Moq >= 4.13.0",
       "ZCopy >= 1.0.0",
       "xunit >= 2.4.1",
       "xunit.abstractions >= 2.0.3",
@@ -492,7 +527,7 @@
         "dependencies": {
           "Moq": {
             "target": "Package",
-            "version": "[4.10.1, )"
+            "version": "[4.13.0, )"
           },
           "xunit": {
             "target": "Package",
@@ -516,7 +551,8 @@
             "target": "Package",
             "version": "[2.4.1, )"
           }
-        }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
