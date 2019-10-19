@@ -6,4 +6,5 @@
 */obj/Debug/*
 */obj/Release/*
 packages/*
-
+*/obj/*
+*/project.assets.json
