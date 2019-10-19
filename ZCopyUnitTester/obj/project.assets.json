@@ -167,7 +167,6 @@
       },
       "ZCopy/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
           "GenericClassLibrary": "1.0.0"
         },

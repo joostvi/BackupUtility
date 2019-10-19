@@ -10,21 +10,6 @@
         "projectUniqueName": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj",
         "projectName": "ZCopy",
         "projectPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\ZCopy.csproj",
-        "packagesPath": "C:\\Users\\Joost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\BackupUtility\\obj\\",
-        "projectStyle": "PackageReference",
-        "skipContentFileWrite": true,
-        "configFilePaths": [
-          "C:\\Users\\Joost\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net461"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
           "net461": {
             "projectReferences": {
@@ -37,17 +22,6 @@
       },
       "frameworks": {
         "net461": {}
-      },
-      "runtimes": {
-        "win": {
-          "#import": []
-        },
-        "win-x64": {
-          "#import": []
-        },
-        "win-x86": {
-          "#import": []
-        }
       }
     },
     "C:\\Users\\Joost\\Documents\\GitHub\\BackupUtility\\generic\\GenericClassLibraryTests\\GenericClassLibraryTests.csproj": {
