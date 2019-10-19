@@ -29,7 +29,7 @@ namespace ZCopy.Classes.NeedToCopy
             }
             else if (_fileComparer.IsSameFile(new FileInfo(aSource), new FileInfo(aTarget)))
             {
-                Logger.Debug($"File {aTarget} equal to {aSource}! Need to copy.");
+                Logger.Debug($"File {aTarget} equal to {aSource}! Skip file!");
                 return false;
             }
             return _confirmationChecker.GetConfirmation(aTarget);
