@@ -1,4 +1,5 @@
 ﻿using GenericClassLibrary.FileSystem;
+using GenericClassLibrary.FileSystem.Compare;
 using GenericClassLibrary.Logging;
 using System;
 using System.IO;
@@ -69,7 +70,7 @@ namespace ZCopy.Classes
             INeedToCopyChecker needToCopyChecker;
             if (baseMap.UpdatedOnly)
             {
-                needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new FileComparer(), new FileSystem(), this);
+                needToCopyChecker = new NeedToCopyUpdatedOnlyChecker(new SimpleFileComparer(), new FileSystem(), this);
             }
             else
             {

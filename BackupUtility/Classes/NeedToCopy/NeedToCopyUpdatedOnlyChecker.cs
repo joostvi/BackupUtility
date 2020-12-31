@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using GenericClassLibrary.FileSystem.Compare;
 using GenericClassLibrary.FileSystem;
 using GenericClassLibrary.Logging;
 using ZCopy.Interfaces;

@@ -4,6 +4,7 @@ using Moq;
 using ZCopy.Classes.NeedToCopy;
 using ZCopy.Interfaces;
 using ZCopyUnitTester.Mocks;
+using GenericClassLibrary.FileSystem.Compare;
 
 namespace ZCopyUnitTester
 {

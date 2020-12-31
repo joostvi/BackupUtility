@@ -81,7 +81,6 @@
     <Compile Include="Classes\CommandHandler.cs" />
     <Compile Include="Classes\ExceptionHandling\StopOnExceptionHandler.cs" />
     <Compile Include="Classes\ExceptionHandling\ContinueOnExceptionHandler.cs" />
-    <Compile Include="Classes\FileComparer.cs" />
     <Compile Include="Classes\FileIgnore\IgnoreNoneChecker.cs" />
     <Compile Include="Classes\FileIgnore\IgnoreOnExtensionsChecker.cs" />
     <Compile Include="Classes\FolderMap.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Classes\Readablity\FullReadChecker.cs" />
     <Compile Include="Interfaces\IFileReadableChecker.cs" />
     <Compile Include="Interfaces\IExceptionHandler.cs" />
-    <Compile Include="Interfaces\IFileComparer.cs" />
     <Compile Include="Classes\PathFormatter.cs" />
     <Compile Include="Interfaces\IFileIgnoreChecker.cs" />
     <Compile Include="Interfaces\INeedToCopyChecker.cs" />

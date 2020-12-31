@@ -1,7 +1,6 @@
 ﻿using System.IO;
+using GenericClassLibrary.FileSystem.Compare;
 using Moq;
-using ZCopy;
-using ZCopy.Interfaces;
 
 namespace ZCopyUnitTester.Mocks
 {
