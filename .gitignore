@@ -8,3 +8,5 @@
 packages/*
 */obj/*
 */project.assets.json
+/BackupUtility/ZCopy.csproj.user
+/BackupUtility/Properties/PublishProfiles/FolderProfile.pubxml.user
