@@ -4,7 +4,6 @@ using ZCopy.Classes;
 
 namespace ZCopy
 {
-    [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand, Unrestricted = true)]
     static class ZCopyMain
     {
         public static void Main(string[] args)
